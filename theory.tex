@@ -283,11 +283,13 @@ and substituting them into \ref{eq:linear_disturbance} we get
 (\omega - \alpha U )\hat{u}_x  + \hat{u}_r U' - \frac{\alpha}{\rho} \hat{p} & = 0 \\
 (\omega -  \alpha U )\hat{u}_r - \frac{1}{\rho}\frac{\partial \hat{p}}{\partial r} & = 0 \\
 (\omega -  \alpha U ) \hat{u}_{\phi} + \frac{1}{\rho}\frac{n}{r} \hat{p} & = 0 \\
-\frac{\partial \hat{u}_r}{\partial r} + \frac{\hat{u}_r}{r} - \alpha \hat{u}_x + \frac{n}{r} \hat{u}_{\phi} &=0  
+\frac{\partial \hat{u}_r}{\partial r} + \frac{\hat{u}_r}{r} - \alpha \hat{u}_x + \frac{n}{r} \hat{u}_{\phi} &=0.  
 \end{split}
 \end{equation}
-
-
+Eliminating other variables to get an equation in $\hat{u}_r$ we get 
+\begin{equation}
+(\omega - \alpha U) \left( \frac{r}{n^2 + \alpha^2 r^2} \frac{\partial^2 (r \hat{u}_r)}{\partial r^2}  + \frac{n^2-\alpha^2 r^2}{(n^2 + \alpha^2 r^2)^2} \frac{\partial (r \hat{u}_r)}{\partial r} \right)- (\omega - \alpha U) \hat{u}_r -r \hat{u}_r \frac{\partial}{\partial r} \frac{r U'}{n^2 + \alpha^2 r^2}   
+\end{equation}
 
 
 \section{The Time Domain ODEs}
