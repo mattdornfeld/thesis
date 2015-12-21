@@ -1,0 +1,111 @@
+\documentclass[superscriptaddress, onecolumn, prl]{revtex4}
+
+\usepackage{amsmath, mathrsfs}    % need for subequations
+\usepackage[pdftex]{graphicx}   % need for figures
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+\usepackage{subfigure}  % use for side-by-side figures
+\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
+\allowdisplaybreaks
+
+\begin{document}
+
+\title{The Unsteady Force Due to Vorticity Creation}
+\maketitle
+The force that must be applied to a fluid of volume $V$ to generate vorticity $\boldsymbol{\omega}(t)$ inside the volume is 
+\begin{equation}
+\textbf{F}_{\omega}(t) = \frac{\rho}{2} \frac{\partial}{\partial t} \int_V \textbf{r} \times \boldsymbol{\omega}(t) dV.
+\end{equation}
+As a simple model of vortex creation we consider the axisymmetric jet emerging from the vocal folds of radius $r_f$ surrounded by a vortical boundary layer of radius $\delta$. As a model for this jet profile we consider the piecewise linear profile shown in Eq. \ref{eq:jet_profile}. This profile possesses three regions. Inside the boundary layer the velocity is constant and equal to $U_0$. The vortical boundary layer has radius $\delta$. Here the velocity rapidly drops from $U_0$ to zero. Outside the boundary the velocity is zero.
+\begin{equation}
+\label{eq:jet_profile}
+\textbf{U} = 
+\begin{cases}
+U_0 \hat{x} & 0 \leq r < r_f \\
+U_0\frac{r_f + \delta - r}{\delta}\hat{x} & r_f \leq r < r_f + \delta \\
+0 \hat{x} & r_f + \delta \leq r < r_0
+\end{cases}
+\end{equation}
+From this assumption it can be seen that the mean flow vorticity is $\boldsymbol{\Omega} = \frac{U_0}{\delta} \hat{\phi}$ inside the jet boundary layer and $0$ outside of it. To calculate the unsteady portion of the vorticity let us separate the total flow into the mean flow and a small disturbance $\textbf{u} = \textbf{U} + \epsilon \textbf{u}'$.
+\begin{equation}
+\textbf{u}' = u_x'(x, r, \phi, t) \hat{x} + u_r'(x, r, \phi, t)  \hat{r} + u_\phi'(x, r, \phi, t)  \hat{\phi}.
+\end{equation}
+Substituting this assumption into the Euler and continuity equations and gathering terms of order $\epsilon$ we get the linearized Euler and continuity equation for the disturbances
+\begin{equation}
+\begin{split}
+\label{eq:linear_disturbance}
+\frac{\partial \textbf{u}' }{\partial t} + U \frac{\partial \textbf{u}'}{\partial x} + u_r' \frac{\partial \textbf{U}}{\partial r} &= -\frac{\nabla p'}{\rho} \\
+\nabla \cdot \textbf{u}' &= 0 
+\end{split}
+\end{equation}
+Let's define the Fourier transforms
+\begin{equation}
+\begin{array}{rrr}
+\mathscr{F}_x[f(r,x,\theta,t)] = \int_{0}^{\infty}dx f(r,x,\theta,t) e^{-i \alpha x} \\
+\mathscr{F}_{\theta}[f(r,x,\theta,t)] = \int_{0}^{2 \pi}d\theta f(r,x,\theta,t) e^{-i n \theta} \\
+\mathscr{F}_{t}[f(r,x,\theta,t)] = \int_{-\infty}^{\infty}dt f(r,x,\theta,t) e^{-i \omega t}
+\end{array}
+\end{equation}
+Let's define the multi dimensional Fourier transform
+\begin{equation}
+\hat{f}(r, \omega, \alpha, n) = \mathscr{F}[f(r,x,\theta,t)] = \int_{-\infty}^{\infty}dt\int_{0}^{2 \pi}d\theta\int_{0}^{\infty}dxf(r,x,\theta,t) e^{-i (n \theta + \alpha x + \omega t)}
+\end{equation}
+\begin{equation}
+\begin{array}{cccc}
+\mathscr{F}[\textbf{u}'] = 
+\begin{pmatrix}
+\hat{u}_x(r) \\
+i \hat{u}_r(r) \\
+\hat{u}_\theta(r)
+\end{pmatrix}
+&
+\mathscr{F}[\frac{\partial \textbf{u}'}{\partial t}] = 
+\begin{pmatrix}
+i \omega \hat{u}_x(r) \\
+- \omega \hat{u}_r(r) \\
+i \omega \hat{u}_\theta(r)
+\end{pmatrix}
+&
+\mathscr{F}[\frac{\partial \textbf{u}'}{\partial x}] = 
+\begin{pmatrix}
+i \alpha \hat{u}_x(r) - \mathscr{F}_t [\mathscr{F}_{\theta}[u_0(t)]]  \\
+- \alpha \hat{u}_r(r) \\
+i \alpha \hat{u}_\theta(r)
+\end{pmatrix}
+&
+\mathscr{F}[\nabla p'] = 
+\begin{pmatrix}
+i \alpha \hat{p}(r) \\
+\hat{p}'(r) \\ 
+\frac{in}{r} \hat{p}(r) 
+\end{pmatrix}
+\end{array}
+\mathscr{F}[\nabla \cdot \textbf{u}']
+\end{equation}
+
+
+\begin{equation}
+\omega
+\begin{pmatrix} 
+\hat{u}_x \\
+- \hat{u}_r \\
+\end{pmatrix}
++ U \alpha  \begin{pmatrix}
+\hat{u}_x \\
+- \hat{u}_r \\
+\end{pmatrix}
++\hat{u}_r \begin{pmatrix}
+\frac{\partial U}{\partial r}\\
+0\\
+\end{pmatrix}
++\begin{pmatrix}
+i \alpha \hat{p}(r) \\
+\frac{\partial \hat{p}}{\partial r} \\ 
+\end{pmatrix}
+= U \begin{pmatrix}
+ \hat{u}_0 \\
+ 0 
+\end{pmatrix}
+\end{equation}
+
+\end{document}
