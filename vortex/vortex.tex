@@ -1,0 +1,204 @@
+\documentclass[superscriptaddress, onecolumn, prl]{revtex4}
+
+\usepackage{amsmath}    % need for subequations
+\usepackage[pdftex]{graphicx}   % need for figures
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+\usepackage{subfigure}  % use for side-by-side figures
+\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
+\allowdisplaybreaks
+
+\begin{document}
+
+\title{The Unsteady Force Due to Vorticity Creation}
+\maketitle
+The force that must be applied to a fluid of volume $V$ to generate vorticity $\boldsymbol{\omega}(t)$ inside the volume is 
+\begin{equation}
+\textbf{F}_{\omega}(t) = \frac{\rho}{2} \frac{\partial}{\partial t} \int_V \textbf{r} \times \boldsymbol{\omega}(t) dV.
+\end{equation}
+As a simple model of vortex creation we consider the axisymmetric jet emerging from the vocal folds of radius $r_f$ surrounded by a vortical boundary layer of radius $\delta$. As a model for this jet profile we consider the piecewise linear profile shown in Eq. \ref{eq:jet_profile}. This profile possesses three regions. Inside the boundary layer the velocity is constant and equal to $U_0$. The vortical boundary layer has radius $\delta$. Here the velocity rapidly drops from $U_0$ to zero. Outside the boundary the velocity is zero.
+\begin{equation}
+\label{eq:jet_profile}
+\textbf{U} = 
+\begin{cases}
+U_0 \hat{x} & 0 \leq r < r_f \\
+U_0\frac{r_f + \delta - r}{\delta}\hat{x} & r_f \leq r < r_f + \delta \\
+0 \hat{x} & r_f + \delta \leq r < r_0
+\end{cases}
+\end{equation}
+From this assumption it can be seen that the mean flow vorticity is $\boldsymbol{\Omega} = \frac{U_0}{\delta} \hat{\phi}$ inside the jet boundary layer and $0$ outside of it. To calculate the unsteady portion of the vorticity let us separate the total flow into the mean flow and a small disturbance $\textbf{u} = \textbf{U} + \epsilon \textbf{u}'$.
+\begin{equation}
+\textbf{u}' = u_x'(x, r, \phi, t) \hat{x} + u_r'(x, r, \phi, t)  \hat{r} + u_\phi'(x, r, \phi, t)  \hat{\phi}.
+\end{equation}
+Substituting this assumption into the Euler and continuity equations and gathering terms of order $\epsilon$ we get the linearized Euler and continuity equation for the disturbances
+\begin{equation}
+\begin{split}
+\label{eq:linear_disturbance}
+\frac{\partial \textbf{u}' }{\partial t} + U \frac{\partial \textbf{u}'}{\partial x} + u_r' \frac{\partial \textbf{U}}{\partial r} &= -\frac{\nabla p'}{\rho} \\
+\nabla \cdot \textbf{u}' &= 0 
+\end{split}
+\end{equation} 
+First we focus on the flow inside the boundary layer ($r_f \leq < r < r_f+\delta$. Resolving the disturbance flow inside the boundary layer into Fourier components
+\begin{equation}
+\begin{split}
+ \textbf{u}' & = \Re \left[ \left( \hat{u}_x(r), i \hat{u}_r(r), \hat{u}_{\phi}(r) \right) e^{in\phi - i \alpha x + i \omega t}   \right] \\
+ p' & = \Re \left[ \hat{p}(r) e^{in\phi - i \alpha x + i \omega t} \right]
+\end{split}
+\end{equation}
+and substituting them into \ref{eq:linear_disturbance} to get the equations
+\begin{equation}
+\label{eq:disturbances}
+\begin{split}
+(\omega - \alpha U )\hat{u}_x  + \hat{u}_r U' - \frac{\alpha}{\rho} \hat{p} & = 0 \\
+(\omega -  \alpha U )\hat{u}_r - \frac{1}{\rho}\frac{\partial \hat{p}}{\partial r} & = 0 \\
+(\omega -  \alpha U ) \hat{u}_{\phi} + \frac{1}{\rho}\frac{n}{r} \hat{p} & = 0 \\
+\frac{\partial \hat{u}_r}{\partial r} + \frac{\hat{u}_r}{r} - \alpha \hat{u}_x + \frac{n}{r} \hat{u}_{\phi} &=0.  
+\end{split}
+\end{equation}
+We can combine these equations to get a single equation for $\hat{u}_r$. The axisymmetric case ($n=0$) requires special care so we will focus on that separately.
+
+\section{The axisymmetric case ($n=0$)}
+If we set $n=0$ the third of Eqs. \ref{eq:disturbances} shows that the azimuthal disturbances will also be zero. Combining the remaining equations to get an equation for $\hat{u}_r$ and collecting terms by $\alpha$ we get
+\begin{equation}
+\label{eq:axi_disturbance1}
+\omega  \left(-\hat{u}_r+r \frac{\partial \hat{u}_r}{\partial r} + r^2 \frac{\partial^2 \hat{u}_r}{\partial r^2}\right) + \alpha  \left(-r U \frac{\partial \hat{u}_r}{\partial r} - r^2 U \frac{\partial^2 \hat{u}_r}{\partial r^2} +\hat{u}_r \left(U -r U'+r^2 U'' \right) \right)- \alpha^2 r^2 \omega  \hat{u}_r + \alpha^3 r^2 \hat{u}_r U = 0.
+\end{equation}
+Substituting in Eq. \ref{eq:jet_profile} for $U$,
+\begin{equation}
+\label{eq:axi_disturbance2}
+\omega  \left(-\hat{u}_r+r \frac{\partial \hat{u}_r}{\partial r} + r^2 \frac{\partial^2 \hat{u}_r}{\partial r^2}\right) + \alpha U_0  \left(-r \frac{\partial \hat{u}_r}{\partial r} - r^2 \frac{\partial^2 \hat{u}_r}{\partial r^2} +\hat{u}_r \left(1 + \frac{r}{\delta}\right) \right)- \alpha^2 r^2 \omega  \hat{u}_r + \alpha^3 r^2 \hat{u}_r U_0 = 0.
+\end{equation} 
+This is a third order polynomial eigenvalue problem in $\alpha$ that can be solved using the spectral collocation method, but first we must formulate boundary conditions for Eq. \ref{eq:axi_disturbance}.
+
+Our boundary conditions will come from enforcing continuity of radial velocity and pressure at $r=r_f$ and $r=r_f+\delta$. To do this we first make use of the fact that we can explicitly solve for the disturbance flow outside the boundary layer. Taking the curl of Eq. \ref{eq:linear_disturbance}, and using the fact that $\frac{\partial \textbf{U}}{\partial r} = 0$, 
+\begin{equation}
+\frac{\partial \boldsymbol{\omega}'}{\partial t} + U \frac{\partial \boldsymbol{\omega}'}{\partial x} = 0,
+\end{equation}
+where $\boldsymbol{\omega}' = \nabla \times \boldsymbol{u}'$. Thus, $\frac{D \boldsymbol{\omega}'}{Dt}=0$, up to first order, which means we can define a velocity potential $\phi'$ for the disturbance flow, which obeys Laplace's equation.
+\begin{equation}
+\label{eq:laplace}
+\nabla^2 \phi' = 0 
+\end{equation}
+Resolving the velocity potential into normal modes $\phi'= \Re \left[ \hat{\phi}(r) e^{in\phi - i \alpha x + i \omega t} \right]$, Eq. \ref{eq:laplace} becomes 
+\begin{equation}
+\label{eq:bessel}
+\frac{\partial^2 \hat{\phi}}{\partial r^2}+\frac{1}{r}\frac{\partial \hat{\phi}}{\partial r} - \left( \alpha^2 + \frac{n^2}{r^2} \right) \hat{\phi} = 0.
+\end{equation}
+For the $n=0$ case Eq. \ref{eq:bessel} has solutions
+\begin{equation}
+\label{eq:phi1}
+\hat{\phi}(r) =\begin{cases}
+\hat{\phi}_{in}(r) &= \\ 
+\hat{\phi}_{out}(r) &= 
+\end{cases}
+\begin{aligned}
+& A I_0(\alpha r) && 0 \leq r < r_f \\
+& B \left(I_0(\alpha r) - \frac{I'_0(\alpha r_0)}{K'_0(\alpha r_0)}K_0(\alpha r)  \right) && r_f + \delta \leq r < r_0,
+\end{aligned}
+\end{equation}
+where we have required $\hat{\phi}$ to remain finite at $r=0$ and zero penetration at $r=r_0$ (i.e. $\frac{\partial \hat{\phi}(r_0)}{\partial r}=0$). 
+
+Our boundary conditions will have the form of a relation between $\hat{u}_r$ and its derivatives at $r=r_f$ and $r=r_f+\delta$. We can relate the constants $A$ and $B$ in Eqs. \ref{eq:phi1} respectively to $\hat{u}_r(r_f)$ and $\hat{u}_r(r_f+\delta)$ by requiring continuity of radial velocity at these points.
+\begin{equation}
+\label{eq:velocity_bc1}
+\begin{split}
+i\hat{u}_r(r_f) &= \frac{\partial \hat{\phi_{in}}(r_f)}{\partial r} \\
+i\hat{u}_r(r_f+\delta) &= \frac{\partial \hat{\phi_{out}}(r_f+\delta)}{\partial r}.
+\end{split}
+\end{equation}
+Injecting Eqs. \ref{eq:phi1} into \ref{eq:velocity_bc1},
+\begin{equation}
+\label{eq:velocity_bc2}
+\begin{split}
+i\hat{u}_r(r_f) &= A \alpha I_0'(\alpha r_f) \\
+i\hat{u}_r(r_f+\delta) &= B \alpha \left(I_0(\alpha (r_f+\delta)) - \frac{I'_0(\alpha r_0)}{K'_0(\alpha r_0)}K_0(\alpha (r_f+\delta))  \right).
+\end{split}
+\end{equation}
+Solving Eqs. \ref{eq:velocity_bc2} for $A$ and $B$, injecting them into Eqs. \ref{eq:phi1},
+\begin{equation}
+\label{eq:phi2}
+\begin{split}
+\hat{\phi}_{in}(r) &= i\hat{u}_r(r_f) \frac{I_0(\alpha r)}{\alpha I_0'(\alpha r_f)} \\
+\hat{\phi}_{out}(r) &= i\hat{u}_r(r_f+\delta) \frac{\left(I_0(\alpha r) - \frac{I'_0(\alpha r_0)}{K'_0(\alpha r_0)}K_0(\alpha r)  \right)}{\alpha \left(I_0(\alpha (r_f+\delta)) - \frac{I'_0(\alpha r_0)}{K'_0(\alpha r_0)}K_0(\alpha (r_f+\delta))  \right)} 
+\end{split}
+\end{equation}
+At this point we would like to point out a difficulty. Eq. \ref{eq:axi_disturbance} is a polynomial eigenvalue problem in $\alpha$. However, it is becoming apparent that the boundary conditions will contain transcendental functions of $\alpha$, but we can use the fact that all the distances are small to approximate the bessel functions with polynomials. Evaluating Eqs. \ref{eq:phi2} at the interfaces and approximating the transcendental part of the expression by the first term in their Laurent series
+\begin{equation}
+\label{eq:phi3}
+\begin{split}
+\hat{\phi}_{in}(r_f) &\approx i\hat{u}_r(r_f) \frac{2}{r_f \alpha^2} \\
+\hat{\phi}_{out}(r_f+\delta) &\approx -i\hat{u}_r(r_f+\delta) \frac{2 r_f}{(r_0^2 - r_f^2) \alpha^2} 
+\end{split}
+\end{equation}
+
+Finally, we enforce continuity of the pressure disturbances at the interfaces to get our boundary conditions. To do so we need to express the disturbance pressure in terms of the disturbance velocity potential $\phi'$, outside the boundary layer, and in terms of the radial disturbance of the radial disturbance velocity $\hat{u}_r$ inside the boundary. We focus on the former goal first. Writing down Eq. \ref{eq:linear_disturbance} outside the boundary layer,
+\begin{equation}
+\label{eq:linear_disturbance2}
+\frac{\partial \nabla \phi' }{\partial t} + U \frac{\partial \nabla \phi'}{\partial x} = -\frac{\nabla p'}{\rho},
+\end{equation} 
+where we have used the fact that $\frac{\partial \textbf{U}}{\partial r}=0$ an $\textbf{u}'=\nabla \phi'$. Moving the pressure term to the left side and factoring out the gradient operator,
+\begin{equation}
+\label{eq:linear_disturbance3}
+\nabla \left( \frac{\partial \phi' }{\partial t} + U \frac{\partial \phi'}{\partial x} + \frac{ p'}{\rho} \right) =0.
+\end{equation}
+Thus if we measure pressure from zero,
+\begin{equation}
+\frac{\partial \phi' }{\partial t} + U \frac{\partial \phi'}{\partial x} = - \frac{ p'}{\rho}.
+\end{equation}
+Resolving this equation into normal modes it becomes
+\begin{equation}
+\label{eq:phi_pressure}
+\frac{ \hat{p}}{\rho} = -i (\omega - \alpha U) \hat{\phi}.
+\end{equation}
+Evaluating Eq. \ref{eq:phi_pressure} at the interfaces and injecting Eqs. \ref{eq:phi3},
+\begin{equation}
+\label{eq:pressure1}
+\begin{split}
+\frac{\hat{p}_{in}(r_f)}{\rho} &= \hat{u}_r(r_f) \frac{2(\omega - \alpha U)}{r_f \alpha^2} \\
+\frac{\hat{p}_{out}(r_f+\delta)}{\rho} &= -\hat{u}_r(r_f+\delta) \frac{2 r_f(\omega - \alpha U)}{(r_0^2 - r_f^2) \alpha^2} 
+\end{split}
+\end{equation}
+We now have an expression for the pressure disturbances at the boundary layers, evaluated from the outside. Next we relate the pressure disturbances inside the boundary layers to the radial velocity disturbances. To do this we solve Eqs. \ref{eq:disturbances} for a relation between $\hat{p}$ and $\hat{u}_r$.
+\begin{equation}
+\label{eq:pressure_velocity}
+\frac{\alpha ^2 \hat{p}}{\rho}  = \omega  \left(\frac{\hat{u}_r }{r}+\frac{\partial \hat{u}_r}{\partial r} \right) - \alpha \left(U \frac{\partial \hat{u}_r}{\partial r}+\hat{u}_r \left(\frac{U}{r}-U' \right) \right). 
+\end{equation}
+Evaluating \ref{eq:pressure_velocity} at the interfaces and combining it with Eq. \ref{eq:pressure1} and requiring continuity of pressure disturbances at the those points,
+\begin{equation}
+\label{eq:bc1}
+\begin{split}
+\omega  \left(\frac{\hat{u}_r(r_f)}{r_f}+\frac{\partial \hat{u}_r(r_f)}{\partial r} \right) - \alpha \left(U(r_f) \frac{\partial \hat{u}_r(r_f)}{\partial r}+\hat{u}_r(r_f) \left(\frac{U(r_f)}{r_f}-\lim_{r \rightarrow r_f^+}U'(r) \right) \right)&= \\\hat{u}_r(r_f) \frac{2(\omega - \alpha U(r_f))}{r_f}& \\
+\omega  \left(\frac{\hat{u}_r(r_f+\delta)}{r_f+\delta}+\frac{\partial \hat{u}_r(r_f+\delta)}{\partial r} \right) - \alpha \left(U(r_f+\delta) \frac{\partial \hat{u}_r(r_f+\delta)}{\partial r}+\hat{u}_r(r_f+\delta) \left(\frac{U(r_f+\delta)}{r_f+\delta}-\lim_{r \rightarrow r_f+\delta^-}U'(r) \right) \right)&= \\
+-\hat{u}_r(r_f+\delta) \frac{2 r_f(\omega - \alpha U(r_f+\delta)}{(r_0^2 - r_f^2)}& 
+\end{split}
+\end{equation}
+Substituting in Eq. \ref{eq:jet_profile} for $U$ and gathering terms by $\alpha$, Eq. \ref{eq:bc1} becomes 
+\begin{equation}
+\label{eq:bc2}
+\begin{split}
+\omega  \left(-\frac{\hat{u}_r(r_f)}{r_f}+\frac{\partial \hat{u}_r(r_f)}{\partial r} \right) + \alpha U_0 \left(-\frac{\partial \hat{u}_r(r_f)}{\partial r}+\hat{u}_r(r_f) \left(\frac{1}{r_f} - \frac{1}{\delta} \right) \right) &= 0 \\
+\omega  \left(\frac{\hat{u}_r(r_f+\delta)}{r_f+\delta}+\frac{\hat{u}_r(r_f+\delta)2 r_f}{r_0^2 - r_f^2}+\frac{\partial \hat{u}_r(r_f+\delta)}{\partial r} \right) - \alpha U_0 \left(\frac{\hat{u}_r(r_f+\delta) }{\delta} \right)&=0
+\end{split}
+\end{equation}
+These are the boundary conditions for Eq. \ref{eq:axi_disturbance}. To make use of spectral collocation methods it is helpful to non dimensionalize them with variables $\hat{u}_r = U_0 \hat{v}_r$, $s=\frac{2}{\delta}(r-r_f)-1$, $\omega^* = \frac{\omega \delta}{U_0}$, $\alpha^* = \alpha \delta$, $s_f=\frac{r_f}{\delta}$, $s_0=\frac{r_0}{\delta}$, $L(s) = \frac{s+1}{2} + s_f$.
+\begin{equation}
+\begin{split}
+& \omega^* \left(-\hat{v}_r+ 2 L(s) \frac{\partial \hat{v}_r}{\partial s} + 4 L(s)^2 \frac{\partial^2 \hat{v}_r}{\partial s^2}\right) + \alpha^* \left(-2 L(s) \frac{\partial \hat{v}_r}{\partial s} - 4 L(s)^2 \frac{\partial^2 \hat{v}_r}{\partial s^2} + \hat{v}_r \left(L(s) + 1\right) \right)- (\alpha^*)^2 \omega^* L(s)^2 \hat{v}_r + (\alpha^*)^3 L(s)^2 \hat{v}_r = 0 \\
+ & \omega^* \left(-\frac{\hat{v}_r(-1)}{s_f}+2\frac{\partial \hat{v}_r(-1)}{\partial s} \right) + \alpha^* \left(-2\frac{\partial \hat{v}_r(-1)}{\partial s}+ \hat{v}_r(-1) \left(\frac{1}{s_f} - 1 \right) \right) = 0 \\
+& \omega^*  \left(\frac{\hat{v}_r(1)}{s_f+1}+2\frac{\hat{v}_r(1) s_f}{s_0^2 - s_f^2}+ 2\frac{\partial \hat{v}_r(1)}{\partial s} \right) - \alpha^* \left(\hat{v}_r(1) \right)=0,
+\end{split}
+\end{equation}
+Rearranging this equation to get an eigenvalue problem in $\omega^*$,
+\begin{equation}
+\begin{split}
+\alpha^* \left(-2 L(s) \frac{\partial \hat{v}_r}{\partial s} - 4 L(s)^2 \frac{\partial^2 \hat{v}_r}{\partial s^2} + \hat{v}_r \left(L(s) + 1\right) \right) + (\alpha^*)^3 L(s)^2 \hat{v}_r &= \omega^* \left( (\alpha^*)^2 L(s)^2 \hat{v}_r + \hat{v}_r - 2 L(s) \frac{\partial \hat{v}_r}{\partial s} - 4 L(s)^2 \frac{\partial^2 \hat{v}_r}{\partial s^2} \right) \\
+\alpha^* \left(-2\frac{\partial \hat{v}_r(-1)}{\partial s}+ \hat{v}_r(-1) \left(\frac{1}{s_f} - 1 \right) \right) &= \omega^* \left(\frac{\hat{v}_r(-1)}{s_f}-2\frac{\partial \hat{v}_r(-1)}{\partial s} \right) \\
+\alpha^* \left(\hat{v}_r(1) \right) &= \omega^*  \left(\frac{\hat{v}_r(1)}{s_f+1}+2\frac{\hat{v}_r(1) s_f}{s_0^2 - s_f^2}+ 2\frac{\partial \hat{v}_r(1)}{\partial s} \right)
+\end{split}
+\end{equation}
+
+
+
+
+
+\end{document}

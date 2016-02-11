@@ -1,6 +1,6 @@
 \documentclass[superscriptaddress, onecolumn, prl]{revtex4}
 
-\usepackage{amsmath, mathrsfs}    % need for subequations
+\usepackage{amsmath, mathrsfs, amssymb}    % need for subequations
 \usepackage[pdftex]{graphicx}   % need for figures
 \usepackage{verbatim}   % useful for program listings
 \usepackage{color}      % use if color is used in text
@@ -18,23 +18,34 @@ The force that must be applied to a fluid of volume $V$ to generate vorticity $\
 \end{equation}
 As a simple model of vortex creation we consider the axisymmetric jet emerging from the vocal folds of radius $r_f$ surrounded by a vortical boundary layer of radius $\delta$. As a model for this jet profile we consider the piecewise linear profile shown in Eq. \ref{eq:jet_profile}. This profile possesses three regions. Inside the boundary layer the velocity is constant and equal to $U_0$. The vortical boundary layer has radius $\delta$. Here the velocity rapidly drops from $U_0$ to zero. Outside the boundary the velocity is zero.
 \begin{equation}
-\label{eq:jet_profile}
-\textbf{U} = 
-\begin{cases}
-U_0 \hat{x} & 0 \leq r < r_f \\
-U_0\frac{r_f + \delta - r}{\delta}\hat{x} & r_f \leq r < r_f + \delta \\
-0 \hat{x} & r_f + \delta \leq r < r_0
-\end{cases}
+\label{eq:mean_flow1}
+\textbf{U} = \frac{U_0}{2} \left( 1 - \tanh{\frac{r-r_f}{4 \delta}} \right) \quad 0 \leq r < r_0
 \end{equation}
-From this assumption it can be seen that the mean flow vorticity is $\boldsymbol{\Omega} = \frac{U_0}{\delta} \hat{\phi}$ inside the jet boundary layer and $0$ outside of it. To calculate the unsteady portion of the vorticity let us separate the total flow into the mean flow and a small disturbance $\textbf{u} = \textbf{U} + \epsilon \textbf{u}'$.
+From this assumption it can be seen that the mean flow vorticity is $\boldsymbol{\Omega} = \frac{U_0}{\delta} \hat{\phi}$(sic) inside the jet boundary layer and $0$ outside of it. It is helpful to work in nondimensionalized coordinates. Making the substitutions $r^* = \frac{2r}{r_0}$ and $u^*=\frac{u}{U_0}$, the mean velocity becomes
 \begin{equation}
-\textbf{u}' = u_x'(x, r, \phi, t) \hat{x} + u_r'(x, r, \phi, t)  \hat{r} + u_\phi'(x, r, \phi, t)  \hat{\phi}.
+\label{eq:mean_flow2}
+\textbf{U}^* = \frac{1}{2} \left( 1 - \tanh\left(\frac{r^* r_0}{8\delta}-\frac{r_f}{4 \delta} \right) \right) \quad 0 \leq r^* < 2
 \end{equation}
+From now on we will just work in these coordinates and drop the star notation.
+
+To calculate the unsteady portion of the vorticity let us separate the total flow into the mean flow and a small disturbance $\textbf{u} = \textbf{U} + \epsilon \textbf{u}'$.
+\begin{equation}
+\textbf{u}' = u_x'(x, r, \phi, t) \hat{x} + u_r'(x, r, \phi, t)  \hat{r}.
+\end{equation}
+Thus we can express the vorticity as $\boldsymbol{\omega}(t) = \boldsymbol{\Omega} + \boldsymbol{\omega}'(t)$, where 
+\begin{equation}
+\boldsymbol{\omega}' = \nabla \times \textbf{u}' = \left( \frac{\partial u_r'}{\partial x} - \frac{\partial u_x'}{\partial r}  \right) \hat{\theta}
+\end{equation}
+So we can express the cross product as
+\begin{equation}
+\frac{\partial}{\partial t}\textbf{r} \times \boldsymbol{\omega} = -x \left(\frac{\partial \dot{u}'_r}{\partial x} - \frac{\partial \dot{u}_x'}{\partial r}   \right) \hat{r} + r \left(\frac{\partial \dot{u}_r'}{\partial x} - \frac{\partial \dot{u}_x'}{\partial r}   \right) \hat{x}
+\end{equation} 
+
 Substituting this assumption into the Euler and continuity equations and gathering terms of order $\epsilon$ we get the linearized Euler and continuity equation for the disturbances
 \begin{equation}
 \begin{split}
 \label{eq:linear_disturbance}
-\frac{\partial \textbf{u}' }{\partial t} + U \frac{\partial \textbf{u}'}{\partial x} + u_r' \frac{\partial \textbf{U}}{\partial r} &= -\frac{\nabla p'}{\rho} \\
+\frac{\partial \textbf{u}' }{\partial t} + U \frac{\partial \textbf{u}'}{\partial x} + u_r' \frac{\partial \textbf{U}}{\partial r} &= -\nabla p' \\
 \nabla \cdot \textbf{u}' &= 0 
 \end{split}
 \end{equation}
@@ -48,64 +59,79 @@ Let's define the Fourier transforms
 \end{equation}
 Let's define the multi dimensional Fourier transform
 \begin{equation}
-\hat{f}(r, \omega, \alpha, n) = \mathscr{F}[f(r,x,\theta,t)] = \int_{-\infty}^{\infty}dt\int_{0}^{2 \pi}d\theta\int_{0}^{\infty}dxf(r,x,\theta,t) e^{-i (n \theta + \alpha x + \omega t)}
+\hat{f}(r, \omega, \alpha) = \mathscr{F}[f(r, x, t)] = \mathscr{F}_x \circ \mathscr{F}_{\theta} \circ \mathscr{F}_t 
+\end{equation}
+Now applying $\mathscr{F}$ to Eqs. \ref{eq:linear_disturbance} we get the linear momentum and mass conservation equations in Fourier space.
+\begin{equation}
+\label{eq:linear1}
+\begin{split}
+(\omega + \alpha U) \hat{u}_x + \hat{u}_r \frac{\partial U}{\partial r} + \alpha \hat{p} &= U \hat{u}_0 + \hat{p}_0 \\
+(\omega + \alpha U) \hat{u}_r + \frac{\partial \hat{p}}{\partial r} &= 0 \\ 
+(\omega + \alpha U) \hat{u}_{\theta} + \frac{n\hat{p}}{r} &= 0 \\ 
+\frac{\partial \hat{u}_r}{\partial r} + \frac{\hat{u}_r}{r} + \alpha \hat{u}_x + \frac{n \hat{u}_{\theta}}{r} &= \hat{u}_0.
+\end{split}
+\end{equation}
+In this equation $\hat{u}_0 = \mathscr{F}_{\theta} \circ \mathscr{F}_t [u_x(r, 0, \theta, t)]$ and $\hat{p}_0 = \mathscr{F}_{\theta} \circ \mathscr{F}_t [p(r, 0, \theta, t)]$. If we assume axisymmetric boundary conditions at $x=0$ then these quantities are only non zero if $n=0$
+\begin{align}
+\hat{u}_0 = 
+\begin{cases}
+2 \pi \mathscr{F}_t [u_x(r, 0, t)] & n=0 \\
+0 & n \neq 0
+\end{cases}
+&&
+\hat{p}_0 = 
+\begin{cases}
+2 \pi \mathscr{F}_t [p(r, 0, t)] & n=0 \\
+0 & n \neq 0
+\end{cases}
+\end{align}  
+We first focus on the axisymmetric case, since it requires special treatment. For $n=0$, Eq. \ref{eq:linear1} becomes
+\begin{equation}
+\label{eq:linear1}
+\begin{split}
+(\omega + \alpha U) \hat{u}_x + \hat{u}_r \frac{\partial U}{\partial r} + \alpha \hat{p} &= U \hat{u}_0 + \hat{p}_0 \\
+(\omega + \alpha U) \hat{u}_r + \frac{\partial \hat{p}}{\partial r} &= 0 \\ 
+\frac{\partial \hat{u}_r}{\partial r} + \frac{\hat{u}_r}{r} + \alpha \hat{u}_x &= \hat{u}_0.
+\end{split}
+\end{equation}
+Eliminating variables to get an equation for $\hat{u}_r$.
+\begin{equation}
+\label{eq:radial1}
+(\omega + \alpha U) \frac{\partial^2 \hat{u}_r}{\partial r^2} + \frac{\omega + \alpha U}{r}  \frac{\partial \hat{u}_r}{\partial r} + \left( \frac{\omega}{r^2} + \alpha^2 \omega + \left(\frac{\alpha}{r^2} + \alpha^2 \right) U - \frac{\alpha U'}{r} + \alpha U'' \right) \hat{u}_r = 0
+\end{equation}
+Upon examining this equation it can be seen that the boundary quantities $\hat{u}_0$ and $\hat{p}_0$ do not appear. Thus, a driving velocity in the axial direction does not affect velocity perturbations in the radial direction, and these disturbances obey the free space equation. The disturbances must obey the no penetration boundary condition at the pipe wall, $\hat{u}_r=0$. We can use the fact that $U \rightarrow \text{constant}$ as $r \rightarrow 0$ to formulate a boundary condition at $r=0$. For constant $U$ Eq. \ref{eq:radial1} has the analytic solution $I_1(\alpha r)$, which goes to zero as $r$ goes to $0$. Thus, the boundary conditions for Eq. \ref{eq:linear1} are
+\begin{equation}
+\label{eq:bc1}
+\begin{split}
+\hat{u}_r (origin) &= 0 \\
+\hat{u}_r (wall) &= 0
+\end{split}
+\end{equation} 
+ 
+We are interested in the spatial development of the disturbances. This means we assume $\omega \in \mathbb{R}$ and $\alpha \in \mathbb{C}$. With this assumption Eqs. \ref{eq:radial1} and \ref{eq:bc1} form a polynomial eigenvalue problem for $\alpha$. There are two common methods for solving these types of eigenvalue problems: the shooting method and spectral collocation. We will focus on spectral collocation. The advantage of this is it gives us all eigenvalues at once and does not require choosing different seed points the way the shooting method does. The spectral collocation method requires us to collect Eq. \ref{eq:radial1} by powers of $\alpha$. 
+\begin{equation}
+\label{eq:radial2}
+r^2 U \hat{u}_r \alpha^3 + r^2 \omega \hat{u}_r \alpha^2 +\left((U - rU' + r^2 U'') \hat{u}_r -U r \frac{\partial \hat{u}_r}{\partial r} -U r^2\frac{\partial^2 \hat{u}_r}{\partial r^2} \right) \alpha + \omega \left(\hat{u}_r - r \frac{\partial \hat{u}_r}{\partial r} - r^2 \frac{\partial^2 \hat{u}_r}{\partial r^2}\right) = 0  
+\end{equation}
+Next we must transform the integration region to the interval $[-1,1]$. This can be done with the substitution $r = s-1$. In these coordinates we can discretize $s$ with the Chebyshev-Lobatto scheme
+\begin{equation}
+s_j = \cos\left( \frac{j \pi}{N} \right) \quad j=0,1,..,N
+\end{equation}
+and approximate the continuous derivatives with Chebyshev differentiation matrices $\textbf{D}$. We have now reduced our problem to solving the polynomial matrix eigenvalue problem 
+\begin{equation}
+\left( \textbf{L}_3 \alpha^3 + \textbf{L}_2 \alpha^2 + \textbf{L}_1 \alpha + \textbf{L}_0 \right) \hat{\textbf{u}}_r = 0.
+\end{equation}
+Where
+\begin{equation}
+\begin{split}
+\textbf{L}_0 &= \omega \left( \textbf{I} - \textbf{D}\textbf{S} - \textbf{D}^2 \textbf{S}^2 \right) \\
+\textbf{L}_1 &= \left( \textbf{U} - \textbf{S} \textbf{U}' + \textbf{S}^2 \textbf{U}''\right) \textbf{I} - \textbf{U} \textbf{S} \textbf{D} - \textbf{U} \textbf{S}^2 \textbf{D}^2
+\end{split}
 \end{equation}
 \begin{equation}
-\begin{array}{cccc}
-\mathscr{F}[\textbf{u}'] = 
-\begin{pmatrix}
-\hat{u}_x(r) \\
-i \hat{u}_r(r) \\
-\hat{u}_\theta(r)
-\end{pmatrix}
-&
-\mathscr{F}[\frac{\partial \textbf{u}'}{\partial t}] = 
-\begin{pmatrix}
-i \omega \hat{u}_x(r) \\
-- \omega \hat{u}_r(r) \\
-i \omega \hat{u}_\theta(r)
-\end{pmatrix}
-&
-\mathscr{F}[\frac{\partial \textbf{u}'}{\partial x}] = 
-\begin{pmatrix}
-i \alpha \hat{u}_x(r) - \mathscr{F}_t [\mathscr{F}_{\theta}[u_0(t)]]  \\
-- \alpha \hat{u}_r(r) \\
-i \alpha \hat{u}_\theta(r)
-\end{pmatrix}
-&
-\mathscr{F}[\nabla p'] = 
-\begin{pmatrix}
-i \alpha \hat{p}(r) \\
-\hat{p}'(r) \\ 
-\frac{in}{r} \hat{p}(r) 
-\end{pmatrix}
-\end{array}
-\mathscr{F}[\nabla \cdot \textbf{u}']
+\label{eq:radial2}
+\begin{split}
+(s-1)^2 U \hat{u}_r \alpha^3 + (s-1)^2 \omega U \hat{u}_r \alpha^2 +\left((U - (s-1)U' + (s-1)^2 U'') \hat{u}_r -U (s-1) \frac{\partial \hat{u}_r}{\partial s} -U (s-1)^2\frac{\partial^2 \hat{u}_r}{\partial s^2} \right) \alpha + \\ \omega \left(\hat{u}_r - (s-1) \frac{\partial \hat{u}_r}{\partial s} - (s-1)^2 \frac{\partial^2 \hat{u}_r}{\partial s^2}\right) = 0  
+\end{split}
 \end{equation}
-
-
-\begin{equation}
-\omega
-\begin{pmatrix} 
-\hat{u}_x \\
-- \hat{u}_r \\
-\end{pmatrix}
-+ U \alpha  \begin{pmatrix}
-\hat{u}_x \\
-- \hat{u}_r \\
-\end{pmatrix}
-+\hat{u}_r \begin{pmatrix}
-\frac{\partial U}{\partial r}\\
-0\\
-\end{pmatrix}
-+\begin{pmatrix}
-i \alpha \hat{p}(r) \\
-\frac{\partial \hat{p}}{\partial r} \\ 
-\end{pmatrix}
-= U \begin{pmatrix}
- \hat{u}_0 \\
- 0 
-\end{pmatrix}
-\end{equation}
-
 \end{document}

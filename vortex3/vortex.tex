@@ -1,0 +1,218 @@
+\documentclass[superscriptaddress, onecolumn, prl]{revtex4}
+
+\usepackage{amsmath, mathrsfs, amssymb}    % need for subequations
+\usepackage[pdftex]{graphicx}   % need for figures
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+\usepackage{subfigure}  % use for side-by-side figures
+\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
+\allowdisplaybreaks
+
+\begin{document}
+
+\title{The Unsteady Force Due to Vorticity Creation}
+\maketitle
+
+\begin{equation}
+\begin{split}
+\label{eq:linear_disturbance1}
+\frac{\partial \textbf{u}' }{\partial t} + U \frac{\partial \textbf{u}'}{\partial x} + v \frac{\partial \textbf{U}}{\partial r} &= -\nabla p' \\
+\nabla \cdot \textbf{u}' &= 0 
+\end{split}
+\end{equation}
+Taking the divergence of the momentum equation and using the continuity equation we get an equation for the pressure
+\begin{equation}
+\label{eq:linear_pressure}
+\nabla^2 p = - 2 U' \frac{\partial v}{\partial x}.
+\end{equation}
+In component form Eq. \ref{eq:linear_disturbance} is
+\begin{equation}
+\label{eq:linear_disturbance2}
+\begin{split}
+\frac{\partial v}{\partial t} + U \frac{\partial v}{\partial x} &= -\frac{\partial p}{\partial r} \\ 
+\frac{\partial u}{\partial t} + U \frac{\partial u}{\partial x} + v U' &= - \frac{\partial p}{\partial x} \\
+\frac{\partial v}{\partial r} + \frac{\partial u}{\partial x} & = 0
+\end{split}
+\end{equation}
+Taking the derivative with respect to $r$ of Eq. \ref{eq:linear_pressure} and using the first of Eqs. \ref{eq:linear_disturbance2} we get an equation for the radial velocity $v$.
+\begin{equation}
+\label{eq:radial1}
+\left[ \left( \frac{\partial}{\partial t} + U \frac{\partial}{\partial x} \right) \left( \nabla^2 - \frac{1}{r^2} \right) - \left( U'' - \frac{U'}{r} \right) \frac{\partial}{\partial x} \right] v = 0
+\end{equation}
+Let's define the Fourier transform with respect to $x$
+\begin{align}
+\tilde{v}(r, \alpha,t) = \int_0^\infty v (r, x, t) e^{-i \alpha x} dx &&
+v(r,x,t) = \frac{1}{2 \pi}\int_{C_\alpha} \tilde{v} (r, \alpha, t) e^{i \alpha x} d \alpha,
+\end{align}
+where the bottom of the contour $C_\alpha$ lies below all singularities of the integrand and is closed by semi circle that encloses the singularities and goes off to infinity. Substituting this expression into \ref{eq:radial1},
+\begin{equation}
+\label{eq:radial1}
+\left[ \frac{\partial}{\partial t} \left(D^2 + \frac{D}{r} - \frac{1}{r^2}  + \frac{\partial^2}{\partial x^2} \right) + U \frac{\partial}{\partial x} \left(D^2 + \frac{D}{r} - \frac{1}{r^2}  + \frac{\partial^2}{\partial x^2} \right) - \left( U'' - \frac{U'}{r} \right) \frac{\partial}{\partial x} \right] v = 0
+\end{equation}
+\begin{multline}
+\frac{\partial}{\partial t} (D^2 \tilde{v} + \frac{D}{r} \tilde{v} - \frac{1}{r^2} \tilde{v} - \alpha^2 \tilde{v}) + \frac{\partial}{\partial t} (- i \alpha v (r, 0, t) - \frac{\partial v(r, 0, t)}{\partial x}) \\ + U (D^2(i \alpha \tilde{v} - v(r,0,t)) + \frac{D}{r}(i \alpha \tilde{v} - v(r,0,t)) - \frac{1}{r^2}(i \alpha \tilde{v} - v(r,0,t) + \\ (- i \alpha^3 \tilde{v} + \alpha^2 v (r, 0, t) - i \alpha \frac{\partial v (r, 0, t) }{\partial x} - \frac{\partial^2 v (r, 0, t)}{\partial x^2})) - (i \alpha \tilde{v} - v (r, 0, t)) \left( U'' - \frac{U'}{r} \right) = 0,
+\end{multline}
+\begin{multline}
+\frac{\partial}{\partial t} (D^2 \tilde{v} + \frac{D}{r} \tilde{v} - \frac{1}{r^2} \tilde{v} - \alpha^2 \tilde{v}) + i \alpha U (D^2 \tilde{v} + \frac{D}{r} \tilde{v} - \frac{1}{r^2} \tilde{v} - \alpha^2 \tilde{v} ) - i \alpha \tilde{v} \left( U'' - \frac{U'}{r} \right) \\ +\frac{\partial}{\partial t} (- i \alpha v (r, 0, t) - \frac{\partial v(r, 0, t)}{\partial x}) +  U( -D^2 - \frac{D}{r} + \frac{1}{r^2} + \alpha^2 - i \alpha \frac{\partial}{\partial x} - \frac{\partial^2}{\partial x^2}) v(r,0,t) + v (r, 0, t)) \left( U'' - \frac{U'}{r} \right) = 0,
+\end{multline}
+\begin{multline}
+\label{eq:radial2}
+\left[ \left( \frac{\partial}{\partial t} + i \alpha U \right) \left(D^2 + \frac{D}{r} - \alpha^2 - \frac{1}{r^2} \right) - i \alpha \left( U'' - \frac{U'}{r} \right) \right] \tilde{v}(r, \alpha, t) = \\ \left[ \left(i \alpha \frac{\partial }{\partial t} + i \alpha U \frac{\partial}{\partial x} + \frac{\partial^2}{\partial x \partial t} + U \frac{\partial^2}{\partial x^2} \right)+ U( D^2 + \frac{D}{r}) - \left( U'' - \frac{U'}{r} + U \left(\frac{1}{r^2} + \alpha^2 \right) \right) \right] v(r,0,t)
+\end{multline}
+where we have used the fact that
+\begin{equation}
+\begin{split}
+\int_0^\infty \frac{\partial v (r, x, t)}{\partial x} e^{-i \alpha x} dx &= i \alpha \tilde{v}(r, \alpha,t) - v (r, 0, t) \\
+\int_0^\infty \frac{\partial^2 v (r, x, t)}{\partial x^2} e^{-i \alpha x} dx &= -\alpha^2 \tilde{v}(r, \alpha,t) - i \alpha v (r, 0, t) - \frac{\partial v(r, 0, t)}{\partial x} \\
+\int_0^\infty \frac{\partial^3 v (r, x, t)}{\partial x^3} e^{-i \alpha x} dx &= - i \alpha^3 \tilde{v}(r, \alpha,t) + \alpha^2 v (r, 0, t) - i \alpha \frac{\partial v (r, 0, t) }{\partial x} - \frac{\partial^2 v (r, 0, t)}{\partial x^2}
+\end{split}
+\end{equation}
+Now defining the Fourier transform with respect to $t$
+\begin{align}
+\hat{v}(r, \alpha, \omega) = \int_{-\infty}^{\infty} \tilde{v}(r, \alpha, t) e^{i \omega t} dt && \tilde{v}(r, \alpha, t) = \frac{1}{2 \pi} \int_{C_\omega} \hat{v} (r, \alpha, \omega) e^{-i \omega t} d \omega,
+\end{align}
+where here the top of the contour $C_\omega$ lies above all singularities in the $\omega$ plane and is closed by a semi circle that travels downward. Substituting this into Eq. \ref{eq:radial2},
+\begin{multline}
+\label{eq:radial3}
+\left[ \left(\omega  - \alpha U \right) \left(D^2 + \frac{D}{r} - \frac{1}{r^2} - \alpha^2 \right) + \alpha \left( U'' - \frac{U'}{r} \right) \right] \hat{v} (r, \alpha, \omega) = \\ i \left[ \left(\alpha \omega + i \alpha U \frac{\partial}{\partial x} -i \omega \frac{\partial}{\partial x} + U \frac{\partial^2}{\partial x^2} \right)+ U( D^2 + \frac{D}{r}) - \left( U'' - \frac{U'}{r} + U \left(\frac{1}{r^2} + \alpha^2 \right) \right) \right] \hat{v}_0(r,\omega) = \hat{f}_0(r,\omega) 
+\end{multline}
+where 
+\begin{equation}
+\hat{v}_0(r, \omega) = \int_{-\infty}^{\infty} v(r, 0 , t) e^{i \omega t} dt.
+\end{equation}
+Let's define the operator on the left as 
+\begin{equation}
+\textbf{L}(\alpha, \omega) = \left( \omega  - \alpha U \right) \left(D^2 + \frac{D}{r} - \frac{1}{r^2} - \alpha^2 \right) + \alpha \left( U'' - \frac{U'}{r} \right).
+\end{equation}
+We have thus converted our problem to solving the inhomogeneous boundary value problem
+\begin{equation}
+\begin{split}
+\textbf{L}(\alpha, \omega) \hat{v} (r, \alpha, \omega) &= \hat{f}_0(r,\omega) \\
+\hat{v} (0, \alpha, \omega) &= 0 \\
+\hat{v} (2, \alpha, \omega) &= 0
+\end{split}
+\end{equation}
+
+To find the dispersion relation we have to solve the homogeneous problem
+\begin{equation}
+\textbf{L}(\alpha, \omega) \hat{v_h}(r, \alpha, \omega) = 0.
+\end{equation}
+For the spatial problem we select a real frequency $\omega$ and solve the polynomial eigenvalue problem,
+\begin{equation}
+\left[ \textbf{A}_0 + \alpha \textbf{A}_1 + \alpha^2 \textbf{A}_2 + \alpha^3 \textbf{A}_3 \right] \hat{v_h}(r, \alpha, \omega)= 0, 
+\end{equation}
+for eigenvalues $\alpha$ and eigenfunctions $\hat{v_h}(r, \alpha, \omega)$. The eigenvalues $\alpha$ are the solutions of the dispersion relation $D(\alpha, \omega)=0$ for a given $\omega$.
+
+To solve the inhomogeneous problem we will find the eigenfunctions and eigenvalues of the operator $\textbf{L}(\alpha, \omega)$ and express the inhomogeneous solution as a sum of the eigenfunctions. That is we have to solve the eigenvalue problem  
+\begin{equation}
+\textbf{L}(\alpha, \omega) \hat{v}_n(\alpha, \omega) = \lambda_n(\alpha, \omega) \hat{v}_n(\alpha, \omega)
+\end{equation}
+Expanding the solutions and driving term of Eq. \ref{eq:radial3} on to the eigenfunctions,
+\begin{equation}
+\begin{split}
+\hat{v} = \sum_n a_n \hat{v}_n \\
+\hat{f}_0 = \sum_n f_n \hat{v}_n & 
+\end{split}
+\end{equation}
+Plugging these back into the original problem
+\begin{equation}
+\sum_n a_n \lambda_n \hat{v}_n = \sum_n f_n \hat{v}_n.
+\end{equation}
+Since the eigenvectors $\{\hat{v}_1, \hat{v}_2,...\}$ are linearly independent we have,
+\begin{equation}
+a_n = \frac{f_n}{\lambda_n}
+\end{equation}
+and,
+\begin{equation}
+\hat{v}(r, \alpha, \omega) = \sum_n \frac{(\hat{f}_0(r, \alpha, \omega), \hat{v}_n(r, \alpha, \omega))}{\lambda_n(\alpha, \omega)} \hat{v}_n(r, \alpha, \omega)
+\end{equation}
+Thus, for a given forcing $\hat{f}_0$ we have solved the problem in $(\alpha, \omega)$ space. Now we must invert back to $(x, t)$ space. First performing the spatial inversion,
+\begin{equation}
+\label{eq:alpha_invert1}
+{v}(r, x, t) = \frac{1}{4 \pi^2}\int_{C_\omega} d \omega \int_{C_\alpha} d\alpha \left(\sum_n \frac{(\hat{f}_0(r, \alpha, \omega), \hat{v}_n(r, \alpha, \omega))}{\lambda_n(\alpha, \omega)} \hat{v}_n(r, \alpha, \omega) \right) e^{i (\alpha x - \omega t)} 
+\end{equation} 
+Now we use the fact that $\lambda_n(\alpha, \omega)$ is an analytic function expect at its poles, which are given by the solutions of $D(\alpha, \omega)=0$ and a branch cut which is given by the solutions of $\left(\omega  - \alpha U \right)=0$. The branch cut does not pose a problem, since we can deform our contour around. For a given $\omega$ let us denote the discrete solutions of the dispersion relation in the $\alpha$ plane as $\alpha_m$. We can then use the residue theorem to evaluate Eq. \ref{eq:alpha_invert1}.
+\begin{equation}
+\label{eq:alpha_invert2}
+v(r, x, t) = \frac{i}{2 \pi} \sum_m \int_{C_\omega} d \omega (\hat{f}_0(r, \alpha_m, \omega), \hat{v}_h(r, \alpha_m, \omega)) \hat{v}_h(r, \alpha_m, \omega) e^{i (\alpha_m x - \omega t)}. 
+\end{equation}
+As a simple example consider the driving flow 
+\begin{equation}
+v(r,0,t)=\frac{2-r}{2}e^{-i \omega_d t},
+\end{equation}
+and mean flow
+\begin{equation}
+\begin{split}
+U(r) &= \frac{2-r^2}{2} \\
+U'(r) &= -r \\
+U''(r) &= -1.
+\end{split}
+\end{equation}
+Physically this corresponds to fully developed Pousille pipe flow with a sinusoidal driving velocity at $x=0$. The Fourier transform of the driving velocity with respect to time is
+\begin{equation}
+\hat{v}_0(r,\omega) = \frac{2-r}{2} \frac{i}{\omega - \omega_d}.
+\end{equation} 
+Inserting this into the definition of $\hat{f}_(r,\omega)$ we get,
+\begin{equation}
+\hat{f}_0(r,\omega) = i \left[ \alpha \omega- \frac{2-r^2}{4 r} -\frac{2-r^2}{2 r^2}\frac{2-r}{2} - \frac{2-r^2}{2}\frac{2-r}{2}\alpha^2 \right] \left( \frac{i}{\sqrt{2 \pi} (\omega - \omega_d)} + \sqrt{\frac{\pi}{2}} \delta(\omega - \omega_d) \right).
+\end{equation}
+\begin{equation}
+\hat{f}_0(r,\omega) = -\left[-\frac{r^3 \alpha^2}{2} + r^2 \alpha^2 - \left( \frac{1}{2} - \alpha^2 \right)r - \left( 2 \alpha^2 - \alpha \omega - \frac{1}{2} \right) + \frac{1}{2r} - \frac{1}{2 r^2}\right] \frac{1}{\omega - \omega_d}.
+\end{equation}
+To condense this expression we define $R(r, \alpha, \omega)$ such that
+\begin{equation}
+\hat{f}_0(r, \alpha, \omega) = \frac{R(r, \alpha, \omega)}{{\omega - \omega_d}}.
+\end{equation}
+Substituting this into Eq. \ref{eq:alpha_invert2} and using the residue theorem
+\begin{equation}
+\label{eq:alpha_invert2}
+v(r, x, t) = - \sum_m (R(r, \alpha_m, \omega_d), \hat{v}_h(r, \alpha_m, \omega_d)) \hat{v}_h(r, \alpha_m, \omega_d) e^{i (\alpha_m x - \omega_d t)}. 
+\end{equation} 
+
+\section{Connection to Acoustic Flow}
+To derive an expression for $\hat{f}_0(r, \omega)$ we recall from the previous chapter that the axial velocity of the acoustic flow is
+\begin{equation}
+u(r, x,t) = c L \sum_m q_m(t) \Re \left[ \frac{s_m}{c} \sinh(\frac{s_m}{c} x) \right] - \frac{(x-L)}{L} u_0(t) 
+\end{equation}
+From the incompressible continuity equation we can derive an expression for radial velocity
+\begin{equation}
+v(r, x,t) = -\frac{r-r_0}{2}\left(c L \sum_m q_m(t) \Re \left[ \frac{s_m^2}{c^2} \cosh(\frac{s_m}{c} x) \right]- \frac{u_0(t)}{L}\right)
+\end{equation}
+Rewriting this in the non dimensional coordinates of this chapter, $r^* = \frac{2 r }{r_0}$, $v^* = \frac{v}{U_0}$, $t^* = \frac{2 t U_0}{r_0}$,  
+\begin{equation}
+v^*(r^*, x^*,t^*) = -\frac{r^* - 2}{4}\left(\frac{r_0 L}{c U_o} \sum_m q_m(t^*) \Re \left[ s_m^2 \cosh \left(\frac{s_m r_0}{2 c} x^* \right) \right]- \frac{r_0}{L} u_0^*(t^*)\right)
+\end{equation}
+From now on we will drop the stars with the understanding that these quantities are non dimensional. Find the first and second derivatives and evaluating those functions at $x=0$
+\begin{equation}
+\begin{split}
+\label{eq:v_derivatives}
+v(r,0,t) &= -\frac{r-2}{4} \left( \frac{r_0 L}{U_0 c}\sum_m Re(s_m^2) q_m(t) - \frac{r_0}{L} u_0(t) \right) \\
+\frac{\partial v(r,0,t) }{\partial x} &= 0 \\
+\frac{\partial^2 v(r,0,t)}{\partial x^2} &= -\frac{r L r_0^3}{16 c^3 U_0} \sum_m Re(s_m^4) q_m(t)
+\end{split}
+\end{equation}
+Taking the Fourier transforms with respect to $t$
+\begin{equation}
+\begin{split}
+\label{eq:v_transformed_derivatives}
+\hat{v}_0(r, \omega) &= \frac{r-2}{4} \left( \frac{r_0 L}{U_0 c}\sum_m Re(s_m^2) \hat{q}_m(\omega) + \frac{r_0}{L} \hat{u}_0(\omega) \right) \\
+\frac{\partial \hat{v}_0(r, \omega)}{\partial x} &= 0 \\
+\frac{\partial^2 \hat{v}_0(r, \omega))}{\partial x^2} &= -\frac{r L r_0^3}{16 c^3 U_0} \sum_m \hat{q}_m(\omega) Re(s_m^4)
+\end{split}
+\end{equation}
+
+We can now simplify the expression for $\hat{f}_0$. Using the fact that first derivatives with respect to $x$ and second derivatives with respect to $r$ are $0$,
+\begin{equation}
+\label{eq:transformed_forcing}
+\hat{f}_0(r,\omega)  = i \left[ \alpha \omega + U \frac{\partial^2}{\partial x^2} + U \frac{D}{r} - U'' + \frac{U'}{r} - U \left(\frac{1}{r^2} + \alpha^2 \right) \right] \hat{v}_0(r,\omega) 
+\end{equation}
+Substituting Eqs. \ref{eq:v_transformed_derivatives} into Eq. \ref{eq:transformed_forcing},
+\begin{equation}
+\hat{f}_0(r,\omega)  = i \frac{r-2}{4} \left(\alpha \omega - U'' + \frac{U'}{r} - \frac{U}{r^2} + U \alpha^2 + \frac{U}{r(r-2)} \right) \left( \frac{r_0 L}{U_0 c}\sum_m Re(s_m^2) \hat{q}_m(\omega) + \frac{r_0}{L} \hat{u}_0(\omega) \right) - i U \frac{r L r_0^3}{16 c^3 U_0} \sum_m Re(s_m^4) \hat{q}_m(\omega) 
+\end{equation}
+
+
+
+
+
+\end{document}
