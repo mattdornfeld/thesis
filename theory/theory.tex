@@ -291,18 +291,44 @@ Writing this in vector form it becomes
 \vec{\ddot{q}} + \left(\boldsymbol{D} + \vec{B} \frac{\gamma }{\mu^2} u_0 \right) \vec{\dot{q}} + \boldsymbol{K} \vec{q} =\vec{B} \frac{\gamma}{\mu} \frac{\partial \Delta p_{src}}{\partial t} -\vec{B} \frac{\gamma }{\mu^2} u_0 \Delta p_{src}  -\left(\vec{A} + \vec{B}  \frac{\gamma }{\mu^2}p \right) u_0 + \vec{B}  \frac{\gamma^2 }{2\mu^2} u_{0}^3,
 \end{equation}  
 where the matrices $D_{nm}=M_{nm} \beta_m$ and $K_{nm}=M_{nm} (\omega_m^2 - \alpha_m^2)$.
+
+Assume the source pressure is sinusoidal in nature, $\Delta p_{src}=\Gamma F_{vort}(t)$, the system becomes
+\begin{equation} 
+\begin{split}
+\dot{u}_0 &= \mu^{-1} \left(p + \Gamma F_{vort} - \sum_l{\dot{q}_l} -\frac{\gamma}{2} u_{0}^2  \right) \\
+\ddot{F}_{vort} + \omega_d^2 F_{vort} &= 0 \\ 
+\ddot{q}_n + \sum_m (M_{nm} \beta_m + B_n \frac{\gamma }{\mu^2} u_0) \dot{q}_m + \sum_m M_{nm} (\omega_m^2 - \alpha_m^2) q_m &= \frac{B_n \gamma}{\mu} \Gamma \dot{F}_{vort} -B_n  \frac{\gamma }{\mu^2} \Gamma u_0 F_{vort} -\left(A_n + B_n  \frac{\gamma }{\mu^2}p \right) u_0 + B_n  \frac{\gamma^2 }{2\mu^2} u_{0}^3.
+\end{split}
+\end{equation}
 \section{The Jacobian and Fixed Points}
 \begin{equation}
-J(n,m) = \begin{cases}
--\frac{\gamma}{\mu} u_0 & n=0, m=0 \\
-0 & n=0, 1 \leq m < N + 1 \\
-\frac{1}{\mu} & n=0, N + 1 \leq m < 2 N +1 \\
-0 & 1 \leq n < N+1, 0 \leq m < N+1 \\
-\delta_{n,m-N} & 1 \leq n < N+1, N+1 \leq m < 2N+1 \\ 
--\frac{B_n \gamma \sum_l \dot{q}_l}{\mu^2} - A_n - \frac{B_n \gamma p }{\mu^2} + \frac{3 B_n \gamma^2 u_0^2}{2 \mu^2}  & N+1 \leq n < 2N+1, m=0\\
--K_{nm} & N+1 \leq n < 2N+1, 1 \leq m < N+1 \\
--D_{nm} - \frac{B_n \gamma u_0}{\mu^2} & N+1 \leq n < 2N+1, N+1 \leq m < 2N+1 \\
-
+J(n,m) =
+\begin{cases}
+\frac{\partial \dot{u}_0}{\partial u_0} =-\frac{\gamma}{\mu} u_0 & n=0, m=0 \\
+\frac{\partial \dot{u}_0}{\partial F_{vort}} = \frac{\Gamma}{\mu} & n=0, m=1 \\
+\frac{\partial \dot{u}_0}{\partial q_m} = 0 & n=0, 2 \leq m < N + 2 \\
+\frac{\partial \dot{u}_0}{\partial \dot{F}_{vort}} = 0 & n=0, m= N+2 \\
+\frac{\partial \dot{u}_0}{\partial \dot{q}_m} = \frac{1}{\mu} & n=0, N + 3 \leq m < 2 N + 3 \\
+\frac{\partial \dot{F}_{vort}}{\partial u_0}=0 & n=1, m=0 \\
+\frac{\partial \dot{F}_{vort}}{\partial F_{vort}} = 0 & n=1, m=1 \\
+\frac{\partial \dot{F}_{vort}}{\partial q_m} = 0 & n=1, 2 \leq m < N + 2 \\
+\frac{\partial \dot{F}_{vort}}{\partial \dot{F}_{vort}} = 1 & n=1, m= N+2 \\
+\frac{\partial \dot{F}_{vort}}{\partial \dot{q}_m} = 0 & n=1, N + 3 \leq m < 2 N + 3 \\ 
+\frac{\partial \dot{q}_n}{\partial u_0} = 0 & 2 \leq n < N+2, m = 0 \\
+\frac{\partial \dot{q}_n}{\partial F_{vort}} = 0 & 2 \leq n < N+2, m = 1 \\
+\frac{\partial \dot{q}_n}{\partial q_m} = 0 & 2 \leq n < N+2, 2 \leq m < N+2 \\
+\frac{\partial \dot{q}_n}{\partial \dot{F}_{vort}} = 0 & 2 \leq n < N+2, m = N+2 \\
+\frac{\partial \dot{q}_n}{\partial \dot{q}_m} = \delta_{n,m-N} & 2 \leq n < N+2, N+3 \leq m < 2N+3 \\ 
+\frac{\partial \ddot{F}_{vort}}{\partial u_0}=0 & n=N+2, m=0 \\
+\frac{\partial \ddot{F}_{vort}}{\partial F_{vort}} = -\omega_d^2 & n=N+2, m=1 \\
+\frac{\partial \ddot{F}_{vort}}{\partial q_m} = 0 & n=N+2, 2 \leq m < N + 2 \\
+\frac{\partial \ddot{F}_{vort}}{\partial \dot{F}_{vort}} = 0 & n=N+2, m= N+2 \\
+\frac{\partial \ddot{F}_{vort}}{\partial \dot{q}_m} = 0 & n=N+2, N + 3 \leq m < 2 N + 3 \\ 
+\frac{\partial \ddot{q}_n}{\partial u_0} =-B_n  \frac{\gamma }{\mu^2} \Gamma F_{vort} -\frac{B_n \gamma \sum_l \dot{q}_l}{\mu^2} - A_n - \frac{B_n \gamma p }{\mu^2} + \frac{3 B_n \gamma^2 u_0^2}{2 \mu^2}  & N+3 \leq n < 2N+3, m=0\\
+\frac{\partial \ddot{q}_n}{\partial F_{vort}} = -B_n  \frac{\gamma }{\mu^2} \Gamma u_0 & N+3 \leq n < 2N+3, m=1\\
+\frac{\partial \ddot{q}_n}{\partial q_m} = -K_{nm} & N+3 \leq n < 2N+3, 2 \leq m < N+2 \\
+\frac{\partial \ddot{q}_n}{\partial \dot{F}_{vort}} = \frac{B_n \gamma}{\mu} \Gamma  & N+3 \leq n < 2N+3, m=N+2\\
+\frac{\partial \ddot{q}_n}{\partial \dot{q}_m} = -D_{nm} - \frac{B_n \gamma u_0}{\mu^2} & N+3 \leq n < 2N + 3, N+3 \leq m < 2N+3 \\
 \end{cases}
 \end{equation}
 \end{document}

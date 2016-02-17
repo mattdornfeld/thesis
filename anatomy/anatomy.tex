@@ -90,7 +90,7 @@ Innervation of the vocal fold musculature is completely supplied by the vagus ne
 Phonation is the physical process underlying vocalization. It is the process by which the vocal folds produce sound through vibration. The basics physics and physiology underlying phonation are as follows. Stimulation of the intrinsic laryngeal muscles from the RLN causes the vocal folds to adduct into a closed position with a converging profile. With the vocal folds in a closed position, air flow from the lungs results in an increase in subglottal pressure. Because the of the converging profile, this increase in subglottal pressure will force the vocal folds apart. The inferior portion of the vocal folds open first. A wave, compressing the tissue laterally, travels upward to the superior portion of the vocal fold. This is called a mucosal wave. The forcing apart of the vocal folds causes an increase in airflow, which corresponds to a drop in the pressure holding them open. Abduction will continue until this pressure can longer balance the elastic restoring force of the vocal fold tissue. At this point the vocal folds will begin to close. Their most inferior points will collide before returning to their closed position with a converging profile, when the cycle will start again \cite{Titze2000, Berke2010}.
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{vagus_nerve.png}
+\includegraphics[width=0.5\linewidth]{vagus_nerve.png}
 \caption{The vagues nerve \cite{Gray2000Anatomy}}
 \label{fig:vagus_nerve}
 \end{figure}
@@ -118,17 +118,81 @@ While the body-cover theory can explain variations of fundamental frequency as a
 \begin{equation} 
 \begin{split}
 m \ddot{x} + b \dot{x} + k x &= p_g \\
-p_g &= p_s + (p_s - p_i) \left( 1 - \frac{a_2}{a_1} - k_e \right) / k_t,
+p_g &= p_s + (p_s - p_i) \left( 1 - \frac{a_2}{a_1} - k_e \right) / k_t \\
+a_1 &= 2 L (x_{01} + x + \frac{\delta}{2c} \dot{x}) \\
+a_2 &= 2 L (x_{02} + x - \frac{\delta}{2c} \dot{x})
 \end{split}
 \end{equation}
-where $x$ is the displacement of the vocal folds from their equilibrium position, $m$ is their mass per unit area, $b$ is the coefficient of linear dissipation per unit area, $k$ is the restoration constant per unit area, $p_g$ is the intraglottal pressure, $p_s$ is the subglottal pressure, $p_i$ is the superglottal pressure, $a_1$ is the inferior area of the vocal folds, $a_2$ is the superior area of the vocal folds, $k_e$ is the pressure recover coefficient for the turbulent expansion region above the vocal folds, and $k_t$ is the transglottal pressure coefficient. Since the harmonic content of an acoustic wave in the vocal tract is determined by the oscillations of the vocal folds, the time course of a vocalization can be described using this model as a function of physiological parameters. The strength of the forcing is determined by the subglottal pressure $p_s$ and the glottal areas $a_1$ and $a_2$. The fundamental frequency $f_0 = \frac{1}{2 \pi} \sqrt{\frac{k}{m}}$ can be calculated using the body cover model and is thus determined by vocal fold tension and subglottal pressure. In addition, the effects of the upper vocal tract can be taken into account by the pressure $p_i$.    
+where $x$ is the displacement of the vocal folds from their equilibrium position, $m$ is their mass per unit area, $b$ is the coefficient of linear dissipation per unit area, $k$ is the restoration constant per unit area, $p_g$ is the intraglottal pressure, $p_s$ is the subglottal pressure, $p_i$ is the superglottal pressure, $a_1$ is the inferior area of the vocal folds, $a_2$ is the superior area of the vocal folds, $k_e$ is the pressure recover coefficient for the turbulent expansion region above the vocal folds, $k_t$ is the transglottal pressure coefficient, $L$ is the axial length of the vocal folds, $T$ is their traverse thickness, lastly $x_{01}$ and $x_{02}$ are the equilibrium displacements of the inferior and superior portions of the vocal folds respectively. Since the harmonic content of an acoustic wave in the vocal tract is determined by the oscillations of the vocal folds, the time course of a vocalization can be described using this model as a function of physiological parameters. The strength of the forcing is determined by the subglottal pressure $p_s$ and the glottal areas $a_1$ and $a_2$. The fundamental frequency $f_0 = \frac{1}{2 \pi} \sqrt{\frac{k}{m}}$ can be calculated using the body cover model and is thus determined by vocal fold tension and subglottal pressure. In addition, the effects of the upper vocal tract can be taken into account by the pressure $p_i$.    
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{vocal_folds_spring.png}
+\includegraphics[width=0.5\linewidth]{vocal_folds_spring.png}
 \caption{Single mass model of the vocal folds (awaiting permission to reprint)}
 \label{fig:vocal_folds_spring}
 \end{figure}
+
+While Titze's equations are successful in accounting for the transfer of kinetic energy of air into vocal fold oscillations, they are only valid for small displacements from the vocal folds' equilibrium positions. Several attempts have been made to introduce nonlinearities into these oscillator equations. The nonlinearities model the loss of energy due to collision of the vocal folds upon large deviations from their equilibrium positions. They have the affect of keeping solutions bounded and introducing harmonic content not accounted for by the fundamental frequency. One of the simpler, yet feature rich, attempts has been proposed by Magnasco et al to model oscillations of vocal folds in bird syrnixes. The Magnasco model basically consists of the Titze model with the introduction of a nonlinearity cubic in the vocal fold velocity.
+\begin{equation} 
+\label{eq:magnasco_model}
+m \ddot{x} + b \dot{x} + \beta \dot{x}^3 + k x = p_s \frac{a_0 - b_0 + 2 \tau \dot{x}}{x + b_0 + 2 \tau \dot{x}},
+\end{equation}
+where here $\tau$ is treated as phenomenological constant. The Magnasco model predicts that the onset of vocal fold oscillations occur through a Hopf bifurcation, which can be achieved by varying the subglottal pressure $p_s$ and vocal fold stiffness $k$ (Fig. \ref{fig:magnasco_hopf}) \cite{Gardner2001}. Furthermore, the model was able to qualitatively reproduce the features of actual canary songs through simple modulations of these parameters  \cite{Gardner2001}.
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{magnasco_hopf.png}
+\caption{Bifurcation diagram for Eq. \ref{eq:magnasco_model}. The system is brought in an out of a state of self-oscillation through a Hopf bifurcation by varying the parameters $k$ and $p_s$ (reprinted with permission) \cite{Gardner2001}.}
+\label{fig:magnasco_hopf}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{magnasco_bird_song.png}
+\caption{Qualitative features of canary song reproduced through simple variations of the parameters $k$ and $p_s$ (reprinted with permission) \cite{Gardner2001}.}
+\label{fig:magnasco_hopf}
+\end{figure}
+\section{The Failure of Vibrating Vocal Fold Models for Ultrasonic Vocalizations}
+The frequency of sonic mammalian vocalizations scales with species mass, according to a power law, over several orders of magnitude of size. This can be seen in Fig. \ref{fig:scaling_law}. The dashed line in the figure is a scaling law proposed by Bradbury and Vehrenkamp. They reasoned that call frequency should be proportional to the inverse of the linear scale of an animal, $f\propto L^{-1}$. Since $L$ is proportional the cube of the mass $M$ of the animal we get $f\propto M^{-3}$ \cite{bradbury1998principles}. It can be seen that while this scaling law does fit the general trend of the sonic data (purple boxes) agreement is not perfect.
+
+A more accurate scaling law (the solid line) was derived by Fletcher by considering the optimal call frequency for an animal to make when it is a given distance away from a conspecific. If $A_v$ is the amplitude of oscillation of the vocal fold area, then from Bernoulli's law the amplitude of oscillation of the velocity of airflow through the vocal folds is given by
+\begin{equation}  
+U = \left( \frac{2p}{\rho} \right)^\frac{1}{2}A_v,
+\end{equation}
+where $p$ is lung pressure and $\rho$ is the density of air. We can think of the vocal folds as a circular aperture set in an infinite plane baffle. The effect of this is to ensure sound only radiates off into infinity in one direction and does not travel backwards. The acoustic power radiated as a function of frequency $f$ is then given by
+\begin{equation}
+\label{eq:power_generated}
+P = \frac{\pi \rho f^2 U^2}{2 c},
+\end{equation}
+where c is the speed of sound in air. Sound amplitude decreases with distance according to an inverse square law. In addition, intensity decreases due to atmospheric absorption. Combining these effects the sound intensity as a function of distance from its source is given by
+\begin{equation}
+\label{eq:intensity_generated}
+I(r) = \frac{P}{4 \pi r^2} e^{-\alpha f^1.5 r},
+\end{equation}
+where $\alpha=3.6 \times 10^{-8} m^{-1} Hz^{-1.5}$ is constant that takes into the account the effects of atmospheric absorption. The acoustic signal provided to the cochlea of a listening conspecific a distance $r$ from the vocalizer is given by
+\begin{equation}
+\label{eq:signal_received}
+S(r) = I(r) A_E,
+\end{equation}
+where $A_E$ is the cross-sectional area of the outer ear. Combings Eqs. \ref{eq:power_generated}, \ref{eq:intensity_generated}, and \ref{eq:signal_received} we get,
+\begin{equation}
+\label{eq:signal_received2}
+S(r) = \frac{p f^2 A_V^2 A_E}{4 c r^2} e^{-\alpha f^1.5 r}.
+\end{equation}
+It is required that $S(r) \geq T$f or the signal to be audible by a conspecific at a distance $r$ from the source, where $T$ is a threshold value that does not vary much between species. From Eq. \ref{eq:signal_received2} it can be seen the amplitude of the signal received at a distance $r$ varies as a function of frequency. To find the optimal frequency $f^*$ for communicating at range $r^*$ we require $\frac{\partial r}{\partial f}=0$ with $S(r^*)=T$. The optimization condition is satisfied when $\alpha f^n r = \frac{2}{n}$. Substituting this back into Eq. \ref{eq:signal_received2} and solving for $f^*$ we get,
+\begin{equation}
+f^*= \left( \frac{16 c T}{\alpha^2 n^2 A_V^2 A_E p} \right)^\frac{1}{2n+2}
+\end{equation}
+Assuming the mouth and ear diameters are proportional to the linear body dimension $L$ gives the result $f^* \propto L^{-\frac{3}{n+1}}$. Since the animals' mass is pr optional to $L^3$ this is equivalent to saying $f^* M^{-\frac{1}{n+1}}$. For the approximate value of $n=1.5$, this becomes $f^* \propto M^{-0.4}$ \cite{Fletcher2010}.
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{frequnecy_scaling2.png}
+\label{fig:frequency_scaling} 
+\caption{Frequency scaling for mammals across several magnitudes of size (adapted from \cite{Fletcher2010}). The purple boxes show the ranges of audible frequencies emitted by several mammals plotted against the ranges of their masses. The solid and dotted lines show plots of a frequency scaling law of the form $f\propto M^{-\alpha}$. The dotted line ($\alpha=\frac{1}{3}$) is based on the conjecture that the average frequency emitted in audible vocalizations should be inversely proportional to the linear scale of the animal. The solid line ($\alpha=0.4$) is based on more in depth acoustic analysis to find the most efficient vocalization frequency for an animal of a given size. The green boxes show the range of ultrasonic frequencies emitted by several mammalian species plotted against their masses. These vocalizations do not obey the scaling laws \cite{white1998,berry1970natural,Fenton1998,Jones2006,bogdanowicz1994,Frankel2009,Whitehead2009,Rendell1999,Kastelein2000,Jefferson1993}.}
+\label{fig:scaling_law}
+\end{figure}
+It can be seen the solid line fits the data for sonic vocalization very well across several orders of magnitude of size, indicating the same mechanisms for vocal production and audition are used throughout different species of mammals. However, it is also quite apparent that the data for ultrasonic vocalizations (green boxes) completely diverge from the scaling law. This is indicative of the fact the mechanisms for USVs are fundamentally different from that for sonic vocalizations.
+
+In 1975 Roberts presented the first evidence that indicated vibrating vocal fold models were insufficient to describe USVs. In the study he placed young rats in a polyethylene bag and recorded both their sonic and ultrasonic vocalizations when the bag was filled with air. He then replaced the air with a heliox gas mixture of $20\%$ oxygen and $80\%$ helium. The effect of this is to increase the speed of sound in the bag by a factor of $1.7$. For the sonic vocalizations, when the bag, he observed that although the higher harmonics increased in frequency the fundamental frequency remained constant. This is consistent with the vibrating fold model, since the harmonic content will be determined by resonance properties of the vocal tract, but the fundamental frequency will be determined by the oscillations of the vocal folds. However for ultrasonic vocalizations, he observed an increase in fundamental frequency when air was replaced with heliox gas \cite{Roberts1975}. In 2011 Riede performed a more sophisticated version of this experiment. He inserted a metal tube into the trachea of several rats. The tube was capable of measuring subglottal pressure and injecting gas into the trachea. He injected a heliox mixture into the trachea of rats mid 22-kHZ vocalization and found an increase in fundamental frequency. Furthermore, he found the fundamental frequency increased in proportion to the amount of heliox gas present \cite{Riede2011}. 
+This is inconsistent with a vibrating vocal fold model and indicates the source of oscillation is aerodynamic rather than physical in nature .
 
 \bibliographystyle{prsty}
 \bibliography{mdornfe1.bib}

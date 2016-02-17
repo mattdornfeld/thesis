@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.4.26)  11 FEB 2016 14:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.4.26)  17 FEB 2016 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -271,7 +271,11 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 LaTeX Warning: Unused global option(s):
     [letter].
 
-(./anatomy.aux)
+(./anatomy.aux
+
+LaTeX Warning: Label `fig:magnasco_hopf' multiply defined.
+
+)
 \openout1 = `anatomy.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
@@ -358,28 +362,28 @@ See the caption package documentation for explanation.
 
 LaTeX Warning: Reference `fig:22_khz' on page 4 undefined on input line 28.
 
-<anatomy_figs/22_khz.png, id=48, 997.7275pt x 632.3625pt>
+<anatomy_figs/22_khz.png, id=56, 997.7275pt x 632.3625pt>
 File: anatomy_figs/22_khz.png Graphic file (type png)
 
 <use anatomy_figs/22_khz.png>
 Package pdftex.def Info: anatomy_figs/22_khz.png used on input line 33.
 (pdftex.def)             Requested size: 195.0pt x 123.58519pt.
 
-<anatomy_figs/60_khz_trill.png, id=49, 1456.9632pt x 435.0654pt>
+<anatomy_figs/60_khz_trill.png, id=57, 1456.9632pt x 435.0654pt>
 File: anatomy_figs/60_khz_trill.png Graphic file (type png)
 
 <use anatomy_figs/60_khz_trill.png>
 Package pdftex.def Info: anatomy_figs/60_khz_trill.png used on input line 38.
 (pdftex.def)             Requested size: 390.0pt x 116.45352pt.
 
-<anatomy_figs/flat_to_trill.png, id=51, 1465.6356pt x 287.6346pt>
+<anatomy_figs/flat_to_trill.png, id=59, 1465.6356pt x 287.6346pt>
 File: anatomy_figs/flat_to_trill.png Graphic file (type png)
 
 <use anatomy_figs/flat_to_trill.png>
 Package pdftex.def Info: anatomy_figs/flat_to_trill.png used on input line 42.
 (pdftex.def)             Requested size: 390.0pt x 76.5388pt.
 
-<anatomy_figs/flat_to_trill_to_flat.png, id=52, 1734.48pt x 897.5934pt>
+<anatomy_figs/flat_to_trill_to_flat.png, id=60, 1734.48pt x 897.5934pt>
 File: anatomy_figs/flat_to_trill_to_flat.png Graphic file (type png)
 
 <use anatomy_figs/flat_to_trill_to_flat.png>
@@ -391,14 +395,7 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
 
-
-LaTeX Warning: Citation `Berke2010' on page 5 undefined on input line 50.
-
-
-LaTeX Warning: Citation `Berke2010' on page 5 undefined on input line 50.
-
-
-<anatomy_figs/larynx_ligaments_antero_lateral.png, id=66, 687.56876pt x 846.161
+<anatomy_figs/larynx_ligaments_antero_lateral.png, id=76, 687.56876pt x 846.161
 25pt>
 File: anatomy_figs/larynx_ligaments_antero_lateral.png Graphic file (type png)
  <use anatomy_figs/larynx_ligaments_antero_lateral.png>
@@ -406,25 +403,17 @@ Package pdftex.def Info: anatomy_figs/larynx_ligaments_antero_lateral.png used
 on input line 55.
 (pdftex.def)             Requested size: 155.99762pt x 191.97908pt.
 
-<anatomy_figs/larynx_ligaments_posterior_view.png, id=67, 442.65375pt x 602.25p
+<anatomy_figs/larynx_ligaments_posterior_view.png, id=77, 442.65375pt x 602.25p
 t>
 File: anatomy_figs/larynx_ligaments_posterior_view.png Graphic file (type png)
  <use anatomy_figs/larynx_ligaments_posterior_view.png>
 Package pdftex.def Info: anatomy_figs/larynx_ligaments_posterior_view.png used 
 on input line 60.
 (pdftex.def)             Requested size: 155.99762pt x 212.2426pt.
-
-
-LaTeX Warning: Citation `Gray2000Anatomy' on page 5 undefined on input line 63.
-
-
-
-LaTeX Warning: Citation `Gray2000Anatomy' on page 5 undefined on input line 63.
-
-
-[5 <./anatomy_figs/22_khz.png (PNG copy)> <./anatomy_figs/60_khz_trill.png> <./
-anatomy_figs/flat_to_trill.png>] [6 <./anatomy_figs/flat_to_trill_to_flat.png>]
-<anatomy_figs/larynx_muscles_top.png, id=83, 490.83376pt x 602.25pt>
+ [5 <./anatomy_figs/22_khz.png (PNG copy)> <./anatomy_figs/60_khz_trill.png> <.
+/anatomy_figs/flat_to_trill.png>] [6 <./anatomy_figs/flat_to_trill_to_flat.png>
+] [7]
+<anatomy_figs/larynx_muscles_top.png, id=101, 490.83376pt x 602.25pt>
 File: anatomy_figs/larynx_muscles_top.png Graphic file (type png)
 
 <use anatomy_figs/larynx_muscles_top.png>
@@ -432,85 +421,70 @@ Package pdftex.def Info: anatomy_figs/larynx_muscles_top.png used on input line
  71.
 (pdftex.def)             Requested size: 155.99762pt x 191.40982pt.
 
-<anatomy_figs/larynx_muscles_side.png, id=84, 405.515pt x 602.25pt>
+<anatomy_figs/larynx_muscles_side.png, id=102, 405.515pt x 602.25pt>
 File: anatomy_figs/larynx_muscles_side.png Graphic file (type png)
 
 <use anatomy_figs/larynx_muscles_side.png>
 Package pdftex.def Info: anatomy_figs/larynx_muscles_side.png used on input lin
 e 76.
 (pdftex.def)             Requested size: 155.99762pt x 231.67857pt.
-
-
-LaTeX Warning: Citation `Gray2000Anatomy' on page 7 undefined on input line 83.
-
-
-
-LaTeX Warning: Citation `Gray2000Anatomy' on page 7 undefined on input line 83.
-
-
-
-LaTeX Warning: Citation `Damrose2003' on page 7 undefined on input line 87.
-
-
-LaTeX Warning: Citation `Berke2010' on page 7 undefined on input line 87.
-
-[7] [8 <./anatomy_figs/larynx_ligaments_antero_lateral.png (PNG copy)> <./anato
-my_figs/larynx_ligaments_posterior_view.png>] [9 <./anatomy_figs/larynx_muscles
-_top.png> <./anatomy_figs/larynx_muscles_side.png>]
-
-LaTeX Warning: Citation `Titze2000' on page 10 undefined on input line 90.
-
-
-LaTeX Warning: Citation `Berke2010' on page 10 undefined on input line 90.
-
-<anatomy_figs/vagus_nerve.png, id=104, 433.62pt x 1003.75pt>
+ [8 <./anatomy_figs/larynx_ligaments_antero_lateral.png (PNG copy)> <./anatomy_
+figs/larynx_ligaments_posterior_view.png>] [9 <./anatomy_figs/larynx_muscles_to
+p.png> <./anatomy_figs/larynx_muscles_side.png>] <anatomy_figs/vagus_nerve.png,
+ id=124, 433.62pt x 1003.75pt>
 File: anatomy_figs/vagus_nerve.png Graphic file (type png)
 
 <use anatomy_figs/vagus_nerve.png>
 Package pdftex.def Info: anatomy_figs/vagus_nerve.png used on input line 93.
-(pdftex.def)             Requested size: 390.0pt x 902.81529pt.
-
-
-LaTeX Warning: Citation `Gray2000Anatomy' on page 10 undefined on input line 94
-.
-
-
-LaTeX Warning: Citation `Gray2000Anatomy' on page 10 undefined on input line 94
-.
-
-
-LaTeX Warning: Float too large for page by 378.81528pt on input line 96.
-
-[10]
-
-LaTeX Warning: Citation `Berke2010' on page 11 undefined on input line 98.
-
-
-LaTeX Warning: Citation `Titze2000' on page 11 undefined on input line 98.
-
-
-LaTeX Warning: Citation `Choi1993' on page 11 undefined on input line 98.
-
+(pdftex.def)             Requested size: 195.0pt x 451.39233pt.
+ [10]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-
-LaTeX Warning: Citation `Titze1988' on page 11 undefined on input line 98.
-
-[11] [12 <./anatomy_figs/vagus_nerve.png>]
-
-LaTeX Warning: Citation `Titze1988' on page 13 undefined on input line 109.
-
-<anatomy_figs/f0_vs_ata.png, id=122, 578.16pt x 433.62pt>
+ [11] [12 <./anatomy_figs/vagus_nerve.png>] <anatomy_figs/f0_vs_ata.png, id=151
+, 578.16pt x 433.62pt>
 File: anatomy_figs/f0_vs_ata.png Graphic file (type png)
 
 <use anatomy_figs/f0_vs_ata.png>
 Package pdftex.def Info: anatomy_figs/f0_vs_ata.png used on input line 112.
 (pdftex.def)             Requested size: 390.0pt x 292.4956pt.
- (./anatomy.bbl [13] [14 <./anatomy_figs/f0_vs_ata.png>]
+ [13] [14 <./anatomy_figs/f0_vs_ata.png>]
+[15] <anatomy_figs/vocal_folds_spring.png, id=177, 272.01625pt x 258.9675pt>
+File: anatomy_figs/vocal_folds_spring.png Graphic file (type png)
+
+<use anatomy_figs/vocal_folds_spring.png>
+Package pdftex.def Info: anatomy_figs/vocal_folds_spring.png used on input line
+ 130.
+(pdftex.def)             Requested size: 195.0pt x 185.65428pt.
+ [16 <./anatomy_figs/vocal_folds_spring.png>] <anatomy_figs/magnasco_hopf.png, 
+id=186, 858.20625pt x 649.42625pt>
+File: anatomy_figs/magnasco_hopf.png Graphic file (type png)
+
+<use anatomy_figs/magnasco_hopf.png>
+Package pdftex.def Info: anatomy_figs/magnasco_hopf.png used on input line 143.
+
+(pdftex.def)             Requested size: 195.0pt x 147.56137pt.
+
+<anatomy_figs/magnasco_bird_song.png, id=191, 867.24pt x 680.5425pt>
+File: anatomy_figs/magnasco_bird_song.png Graphic file (type png)
+
+<use anatomy_figs/magnasco_bird_song.png>
+Package pdftex.def Info: anatomy_figs/magnasco_bird_song.png used on input line
+ 149.
+(pdftex.def)             Requested size: 195.0pt x 153.01161pt.
+ [17 <./anatomy_figs/magnasco_hopf.png (PNG copy)>] [18 <./anatomy_figs/magnasc
+o_bird_song.png (PNG copy)>] [19]
+<anatomy_figs/frequnecy_scaling2.png, id=226, 1042.1334pt x 784.8522pt>
+File: anatomy_figs/frequnecy_scaling2.png Graphic file (type png)
+
+<use anatomy_figs/frequnecy_scaling2.png>
+Package pdftex.def Info: anatomy_figs/frequnecy_scaling2.png used on input line
+ 187.
+(pdftex.def)             Requested size: 195.0pt x 146.84805pt.
+ [20] [21 <./anatomy_figs/frequnecy_scaling2.png>] (./anatomy.bbl [22]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
@@ -532,7 +506,7 @@ Missing character: There is no “ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
- [15
+ [23
 
 ]
 Missing character: There is no â in font cmr12!
@@ -544,35 +518,41 @@ Missing character: There is no “ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no “ in font cmr12!
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
- [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no “ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no “ in font cmr12!
+Missing character: There is no â in font cmr12!
+Missing character: There is no € in font cmr12!
+Missing character: There is no “ in font cmr12!
+ [24])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 203.
+ [25]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 203.
  (./anatomy.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 119.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 119.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 203.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 203.
+Package rerunfilecheck Info: File `anatomy.out' has not changed.
+(rerunfilecheck)             Checksum: 1CAAE4D4C51D8376049E5640C4E8C4FE;315.
 
-
-Package rerunfilecheck Warning: File `anatomy.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `anatomy.out':
-(rerunfilecheck)             Before: 4CFF8A99454B7B99F7CC530573D4A796;138
-(rerunfilecheck)             After:  51B5E33893F9DAB4CE83D83939E40AC0;207.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 119.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 203.
  ) 
 Here is how much of TeX's memory you used:
- 6936 strings out of 494978
- 105724 string characters out of 6180203
- 192615 words of memory out of 5000000
- 10050 multiletter control sequences out of 15000+600000
+ 7023 strings out of 494978
+ 107431 string characters out of 6180203
+ 195226 words of memory out of 5000000
+ 10091 multiletter control sequences out of 15000+600000
  9216 words of font info for 33 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 36i,17n,38p,2748b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,17n,45p,2748b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
@@ -582,12 +562,13 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
 type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-12.pfb>
-Output written on anatomy.pdf (16 pages, 6347822 bytes).
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+
+Output written on anatomy.pdf (25 pages, 9889578 bytes).
 PDF statistics:
- 198 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
- 42 named destinations out of 1000 (max. 500000)
- 67 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 352 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 103 words of extra memory for PDF output out of 10000 (max. 10000000)
 

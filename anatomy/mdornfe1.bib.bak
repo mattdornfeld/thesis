@@ -129,25 +129,6 @@
   Url                      = {http://dx.doi.org/10.1016/B978-0-12-374593-4.00038-3}
 }
 
-@InBook{Berke2010Functions,
-  Title                    = {{Functions of the larynx and production of sounds}},
-  Author                   = {Berke, Gerald S. and Long, Jennifer L.},
-  Pages                    = {419--426},
-  Publisher                = {Elsevier},
-  Year                     = {2010},
-  Volume                   = {19},
-
-  Citeulike-article-id     = {13176050},
-  Citeulike-linkout-0      = {http://dx.doi.org/10.1016/b978-0-12-374593-4.00038-3},
-  Doi                      = {10.1016/b978-0-12-374593-4.00038-3},
-  ISBN                     = {9780123745934},
-  Owner                    = {matthew},
-  Posted-at                = {2014-05-19 19:12:25},
-  Priority                 = {2},
-  Timestamp                = {2016.02.02},
-  Url                      = {http://dx.doi.org/10.1016/b978-0-12-374593-4.00038-3}
-}
-
 @Article{berry1970natural,
   Title                    = {The Natural History of the House Mouse},
   Author                   = {Berry, RJ},
@@ -183,6 +164,7 @@
   Number                   = {5},
   Pages                    = {967–972},
   Volume                   = {50},
+
   Doi                      = {10.1016/0031-9384(91)90423-l},
   ISSN                     = {0031-9384},
   Owner                    = {matthew},
@@ -257,8 +239,6 @@
   Number                   = {1-2},
   Pages                    = {222–226},
   Volume                   = {109},
-
-  __markedentry            = {[matthew:]},
   Doi                      = {10.1016/0304-3940(90)90567-s},
   ISSN                     = {0304-3940},
   Owner                    = {matthew},
@@ -291,7 +271,7 @@
   Year                     = {2010},
   Pages                    = {209–214},
 
-  __markedentry            = {[matthew:6]},
+  __markedentry            = {[matthew:]},
   Doi                      = {10.1016/b978-0-12-374593-4.0021-8},
   ISBN                     = {http://id.crossref.org/isbn/9780123745934},
   ISSN                     = {1569-7339},
@@ -553,6 +533,25 @@
   Url                      = {http://dx.doi.org/10.1016/B978-0-12-373553-9.00242-X}
 }
 
+@Article{Gardner2001,
+  Title                    = {Simple Motor Gestures for Birdsongs},
+  Author                   = {Gardner, Tim and Cecchi, G. and Laje, R. and Mindlin, Gabriel B. and Magnasco, M.},
+  Journal                  = {Physical Review Letters},
+  Year                     = {2001},
+
+  Month                    = {Oct},
+  Number                   = {20},
+  Volume                   = {87},
+
+  __markedentry            = {[matthew:6]},
+  Doi                      = {10.1103/physrevlett.87.208101},
+  ISSN                     = {1079-7114},
+  Owner                    = {matthew},
+  Publisher                = {American Physical Society (APS)},
+  Timestamp                = {2016.02.12},
+  Url                      = {http://dx.doi.org/10.1103/PhysRevLett.87.208101}
+}
+
 @Article{Gardner2006,
   Title                    = {Sparse time-frequency representations},
   Author                   = {Gardner, T. J. and Magnasco, M. O.},
@@ -617,6 +616,7 @@
   Number                   = {2},
   Pages                    = {354–362},
   Volume                   = {107},
+
   Doi                      = {10.1037/0735-7044.107.2.354},
   ISSN                     = {0735-7044},
   Owner                    = {matthew},
@@ -635,6 +635,7 @@
   Number                   = {7},
   Pages                    = {511–528},
   Volume                   = {25},
+
   Doi                      = {10.1002/dev.420250705},
   ISSN                     = {1098-2302},
   Owner                    = {matthew},
@@ -857,6 +858,7 @@
   Number                   = {6},
   Pages                    = {1364–1371},
   Volume                   = {121},
+
   Doi                      = {10.1037/0735-7044.121.6.1364},
   ISSN                     = {0735-7044},
   Owner                    = {matthew},

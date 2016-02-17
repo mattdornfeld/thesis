@@ -5,47 +5,56 @@ The style file: prsty.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: mdornfe1.bib.bib
+Warning--entry type for "Gray2000Anatomy" isn't style-file defined
+--line 581 of file mdornfe1.bib.bib
 Warning--Warning: volume missing in entry Hofer2010.
 Warning--Warning: volume missing in entry Burgdorf2010.
-You've used 12 entries,
+Warning--Missing address in entry Titze2000.
+Warning--Warning: pages missing in entry Gardner2001.
+Warning--No publisher for entry bradbury1998principles.
+Warning--Missing address in entry bradbury1998principles.
+Warning--Warning: volume missing in entry bogdanowicz1994.
+Warning--Warning: volume missing in entry Frankel2009.
+Warning--Warning: volume missing in entry Whitehead2009.
+You've used 32 entries,
             1872 wiz_defined-function locations,
-            591 strings with 5940 characters,
-and the built_in function-call counts, 2916 in all, are:
-= -- 127
-> -- 121
+            729 strings with 8873 characters,
+and the built_in function-call counts, 6939 in all, are:
+= -- 258
+> -- 326
 < -- 0
-+ -- 38
-- -- 25
-* -- 280
-:= -- 343
-add.period$ -- 12
-call.type$ -- 12
++ -- 105
+- -- 69
+* -- 653
+:= -- 819
+add.period$ -- 32
+call.type$ -- 32
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 120
-empty$ -- 274
-format.name$ -- 37
-if$ -- 670
+cite$ -- 41
+duplicate$ -- 311
+empty$ -- 703
+format.name$ -- 101
+if$ -- 1598
 int.to.chr$ -- 0
-int.to.str$ -- 12
+int.to.str$ -- 32
 missing$ -- 0
-newline$ -- 39
-num.names$ -- 12
-pop$ -- 67
+newline$ -- 99
+num.names$ -- 32
+pop$ -- 201
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 237
+skip$ -- 554
 stack$ -- 0
-substring$ -- 291
-swap$ -- 82
+substring$ -- 490
+swap$ -- 197
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 2
-while$ -- 24
-width$ -- 14
-write$ -- 62
-(There were 2 warnings)
+type$ -- 21
+warning$ -- 9
+while$ -- 60
+width$ -- 34
+write$ -- 161
+(There were 10 warnings)
