@@ -69,6 +69,25 @@
   Url                      = {http://dx.doi.org/10.1126/science.1157632}
 }
 
+@Article{Batchelor1962,
+  Title                    = {Analysis of the stability of axisymmetric jets},
+  Author                   = {Batchelor, G. K. and Gill, A. E.},
+  Journal                  = {J. Fluid Mech.},
+  Year                     = {1962},
+
+  Month                    = {Dec},
+  Number                   = {04},
+  Pages                    = {529},
+  Volume                   = {14},
+
+  Doi                      = {10.1017/s0022112062001421},
+  ISSN                     = {1469-7645},
+  Owner                    = {matthew},
+  Publisher                = {Cambridge University Press (CUP)},
+  Timestamp                = {2015.02.24},
+  Url                      = {http://dx.doi.org/10.1017/S0022112062001421}
+}
+
 @Article{batchelor1962,
   Title                    = {{Analysis of the stability of axisymmetric jets}},
   Author                   = {Batchelor, G. K. and Gill, A. E.},
@@ -91,25 +110,6 @@
   Priority                 = {2},
   Timestamp                = {2016.02.02},
   Url                      = {http://dx.doi.org/10.1017/s0022112062001421}
-}
-
-@Article{Batchelor1962,
-  Title                    = {Analysis of the stability of axisymmetric jets},
-  Author                   = {Batchelor, G. K. and Gill, A. E.},
-  Journal                  = {J. Fluid Mech.},
-  Year                     = {1962},
-
-  Month                    = {Dec},
-  Number                   = {04},
-  Pages                    = {529},
-  Volume                   = {14},
-
-  Doi                      = {10.1017/s0022112062001421},
-  ISSN                     = {1469-7645},
-  Owner                    = {matthew},
-  Publisher                = {Cambridge University Press (CUP)},
-  Timestamp                = {2015.02.24},
-  Url                      = {http://dx.doi.org/10.1017/S0022112062001421}
 }
 
 @Article{Berke2010,
@@ -200,6 +200,12 @@
   Publisher                = {JSTOR}
 }
 
+@Book{bradbury1998principles,
+  Title                    = {Principles of animal communication},
+  Author                   = {Bradbury, Jack W and Vehrencamp, Sandra L},
+  Year                     = {1998}
+}
+
 @Article{Brudzynski2007a,
   Title                    = {{Ultrasonic calls of rats as indicator variables of negative or positive states: acetylcholine-dopamine interaction and acoustic coding.}},
   Author                   = {Brudzynski, Stefan M.},
@@ -239,6 +245,7 @@
   Number                   = {1-2},
   Pages                    = {222–226},
   Volume                   = {109},
+
   Doi                      = {10.1016/0304-3940(90)90567-s},
   ISSN                     = {0304-3940},
   Owner                    = {matthew},
