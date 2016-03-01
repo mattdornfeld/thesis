@@ -1,0 +1,142 @@
+\documentclass[12pt, letter]{report}
+
+\usepackage{amsmath}    % need for subequations
+\usepackage[pdftex]{graphicx}   % need for figures
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+\usepackage{caption}  
+\usepackage{subcaption}  % use for side-by-side figures
+\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
+\usepackage{cleveref}
+\usepackage{setspace}
+\doublespacing
+
+\allowdisplaybreaks
+\captionsetup{compatibility=false}
+
+\begin{document}
+
+\chapter{Fluid Mechanics and Acoustics Background}
+\section{Equations of Fluid Motion}
+The state of a fluid at time t and position $\textbf{x}$ is determined by its velocity field $\textbf{v}(\textbf{x}, t)$ and any two thermodynamic variables. Common choices for these thermodynamic variables are the pressure field $p(\textbf{x}, t)$, density field $\rho(\textbf{x}, t)$, or temperature field $T(\textbf{x}, t)$. We thus need five scalar equations to specify the equations of motion for the fluid.
+
+\subsection{Mass Conservation}
+The first equation of motion is a statement of conservation of mass. To derive it we consider the total mass in a volume $V$, which can be expressed as a volume integral of the fluid density
+\begin{equation}
+\label{eq:mass}
+M = \int_V \rho dV.
+\end{equation}
+If we consider an infinitesimal element $d\textbf{S}$ of the volume's enclosing surface $S$, the net flux of mass through that infinitesimal element is $\rho \textbf{v} \cdot d\textbf{S}$. Thus the total flux of mass through $S$ is given by the surface integral of that quantity.
+\begin{equation}
+\label{eq:flux}
+\Phi_M = \int_S \rho \textbf{v} \cdot d\textbf{S}.
+\end{equation}
+Conservation of mass states that the time rate of change of the mass in $V$ plus the net flux through $S$ must equal $0$.
+\begin{equation}
+\label{eq:conservation1}
+\frac{d M}{d t} + \Phi_M = 0
+\end{equation}
+Substituting Eqs. \ref{eq:mass} and \ref{eq:flux} into \ref{eq:conservation1} we get
+\begin{equation}
+\int_V \frac{\partial \rho}{\partial t} dV + \int_S \rho \textbf{v} \cdot d\textbf{S} = 0.
+\end{equation}
+Now using the divergence theorem on the second integral we can express this equation as
+\begin{equation}
+\int_V \left(\frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \textbf{v} \right)\right) dV = 0.
+\end{equation}
+This equation must be true for all volumes $V$. Thus, the integrand must be equal to $0$, and we obtain the equation of fluid continuity.
+\begin{equation}
+\label{eq:continuity}
+\frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \textbf{v} \right)=0.
+\end{equation}
+
+\subsection{Momentum Conservation}
+The momentum conservation equation comes from similar considerations as the previous section. We will derive an expression for the net momentum in a volume $V$ and relate its time rate of change to the net flux of momentum through the volume's enclosing surface $S$. Although this process will be made somewhat more complicated by the fact that momentum is a vector quantity. The $i^{th}$ component of the total linear momentum in volume $V$ is given by
+\begin{equation}
+\label{eq:momentum}
+P_i = \int_V \rho v_i dV
+\end{equation}
+Furthermore the rate at which momentum flows through infinitesimal area $d\textbf{S}$ is given by $\rho \textbf{v} (\textbf{v} \cdot d\textbf{S})$. Thus, the total flux of the $i^{th}$ momentum component through $S$ is given by.
+\begin{equation}
+\label{eq:momentum_flux}
+\Phi_i = \int_S \rho v_i v_j dS_j,
+\end{equation}
+where summations are carried out over repeated indices. Finally, we will need an expression for the net force on $V$. The $i^{th}$ component of that force is given by
+\begin{equation} 
+\label{eq:force}
+f_i = \int_V F_i dV + \int_S \sigma_{ij} dS_j,
+\end{equation}
+where the left integral is the total contribution from body forces, such as gravity. The right integral is the total contribution from surface forces, such as those arising in shear flow. The matrix $sigma_{ij}$ is the stress tensor. Conservation of momentum and Newton's second law states that the time rate of change of momentum inside $V$ plus the flux of momentum through $S$ must equal the net force on $V$.
+\begin{equation}
+\label{eq:momentum_conservation1}
+\frac{d P_i}{d t} + \Phi_i = f_i.
+\end{equation}
+Inserting Eqs. \ref{eq:momentum}, \ref{eq:momentum_flux}, and \ref{eq:force} into Eq. \ref{eq:momentum_conservation} we get
+\begin{equation}
+\int_V \frac{\partial \rho v_i}{\partial t} dV + \int_S \rho v_i v_j dS_j = \int_V F_i dV + \int_S \sigma_{ij} dS_j.
+\end{equation}
+Now we can use the divergence theorem to convert the surface integrals into volume integrals.
+\begin{equation}
+\int_V \left( \frac{\partial \rho v_i}{\partial t} + \frac{\partial (\rho v_i v_j)}{\partial x} \right) dV = \int_V \left( F_i + \frac{\partial \sigma_{ij}}{\partial x} \right) dV.
+\end{equation}
+Again this equation must be valid for arbitrary volumes $V$, so we can set the integrands equal to each other.
+\begin{equation}
+\frac{\partial \rho v_i}{\partial t} + \frac{\partial (\rho v_i v_j)}{\partial x} = F_i + \frac{\partial \sigma_{ij}}{\partial x}.
+\end{equation}
+Expanding the derivatives and rearranging the terms of this equation we get
+\begin{equation}
+\left( \frac{\partial \rho}{\partial t} + v_j \frac{\partial \rho}{\partial x_j} + \rho \frac{\partial v_j}{\partial x_j} \right) v_i + \rho \left( \frac{\partial v_i}{\partial t} + v_j \frac{\partial v_i}{\partial x_j} \right) = F_i + \frac{\partial \sigma_{ij}}{\partial x_j}.
+\end{equation}
+Now combining it with the continuity equation in tensor form,
+\begin{equation}
+\frac{\partial \rho}{\partial t} + v_j \frac{\partial \rho}{\partial x_j} + \rho \frac{\partial v_j}{\partial x_j} = 0,
+\end{equation}
+we can eliminate the derivatives of density and obtain the equation of fluid motion.
+\begin{equation}
+\rho \left( \frac{\partial v_i}{\partial t} + v_j \frac{\partial v_i}{\partial x_j} \right) = F_i + \frac{\partial \sigma_{ij}}{\partial x_j}.
+\end{equation}
+This can be expressed as
+\begin{equation} 
+\frac{D v_i}{\partial t} = \frac{F_i}{\rho} + \frac{1}{\rho}\frac{\partial \sigma_{ij}}{\partial x_j},
+\end{equation}
+where 
+\begin{equation}
+\frac{D}{Dt} = \frac{\partial }{\partial t} + v_j \frac{\partial }{\partial x_j}
+\end{equation}
+is known as the convective derivative. 
+
+\section{The Stress Tensor}
+\subsection{Symmetry of the Stress Tensor}
+In this subsection we will derive an expression for the torque on a fluid of volume $V$ to show that the stress tensor must be symmetric. The $i^{th}$ component of the torque about the origin $O$ from a body force on an infinitesimal volume element $dV$ inside of $V$ is $\varepsilon_{ijk} x_j F_k dV$. Similarly the $i^{th}$ component of torque on an infinitesimal area element $d\textbf{S}$ of the surface $S$ is $\varepsilon_{ijk} x_j \sigma_{kl} dS_l$. In these expressions $\varepsilon_{ijk}$ is the Levi-Civita tensor and is defined by
+\begin{equation}
+\varepsilon_{ijk} =
+\begin{cases}
+1 & \text{i,j,k is an even permutation of 1,2,3} \\
+-1 & \text{i,j,k is an odd permutation of 1,2,3} \\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+Integrating the first expression over $V$ and the second over $S$ we get an expression for the total torque on $V$ about $O$.
+\begin{equation}
+\tau_i = \int_V \varepsilon_{ijk} x_j F_k dV + \int_S \varepsilon_{ijk} x_j \sigma_{kl} dS_l.
+\end{equation}
+Using the divergence theorem to turn the area integral into a volume integral,
+\begin{equation}
+\tau_i = \int_V \varepsilon_{ijk} x_j F_k dV + \int_V \varepsilon_{ijk} \frac{\partial (x_j \sigma_{kl})}{\partial x_l} dV.
+\end{equation}
+Now expanding the derivative in the second integral, this becomes
+\begin{equation}
+\tau_i = \int_V \varepsilon_{ijk} x_j F_k dV + \int_V \varepsilon_{ijk} \sigma_{kj} dV + \int_V \varepsilon_{ijk} x_j\frac{\partial \sigma_{kl}}{\partial x_l}dV.
+\end{equation}
+Now we consider the case in which the point $O$ lies within $V$ and we allow the volume to tend to $0$. If the volume is sufficiently small, then $F_i$, $\sigma_{ij}$, and $\frac{\partial \sigma_{ij}}{\partial x_j}$ will not vary significantly over the region of integration. From this we can conclude the first, second, and third integrals in the above equation will scale as $V^{4/3}$, $V$, and $V^{4/3}$ respectively (since $x_j ~ V^{1/3}$). From Newton's second law for rotational motion we know the time rate of change of angular momentum of the fluid volume must equal the torque applied to it. However, we also know that the rate of change of angular momentum should scale as $V^{4/3}$, since the net linear acceleration scales as $V$, and the rate of change of angular momentum scales as $xV$. This is inconsistent with our above result, which shows that the rate of change of angular momentum will be dominated by the second integral in the above equation, since it scales as $V$. The only way to resolve this inconsistency is for the second integral to be identically $0$ for all choices of $O$ and $V$. This is only possibly if
+\begin{equation}
+\varepsilon_{ijk} \sigma_{kj} = 0,
+\end{equation}
+which implies that stress tensor must be symmetric
+\begin{equation}
+\sigma_{ij} = \sigma_{ji}.
+\end{equation}
+\bibliographystyle{prsty}
+\bibliography{mdornfe1.bib}
+
+\end{document}
