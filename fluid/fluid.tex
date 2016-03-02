@@ -50,6 +50,17 @@ This equation must be true for all volumes $V$. Thus, the integrand must be equa
 \frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \textbf{v} \right)=0.
 \end{equation}
 
+\subsection{Energy Conservation}
+For general fluid dynamics problems, especially ones in which there is significant heat conduction due to temperature gradients, the full energy transport equation must be used to describe the spatial and temporal evolution of energy distributions in the system. However, we are mostly concerned with the flow of air in the rodent vocal tract. Rats complete a full respiration cycle approximately eight times per second. Thus, it is not a bad approximation to neglect heat conduction and assume the air remains at room temperature. This assumption simplifies the energy analysis greatly. By neglecting heat conduction it can be assumed that the the fluid is homentropic, meaning the fluid's specifc entropy $s$ is constant and uniform. This allows the assumption that the fluid's pressure and density are related by an equation of the form
+\begin{equation}
+p = p(\rho, s).
+\end{equation}
+For an adiabatic ideal gas this equation is
+\begin{equation}
+p = constant \times \rho^\gamma,
+\end{equation}
+where $\gamma$ is the ratio of specific heats of the gas
+
 \subsection{Momentum Conservation}
 The momentum conservation equation comes from similar considerations as the previous section. We will derive an expression for the net momentum in a volume $V$ and relate its time rate of change to the net flux of momentum through the volume's enclosing surface $S$. Although this process will be made somewhat more complicated by the fact that momentum is a vector quantity. The $i^{th}$ component of the total linear momentum in volume $V$ is given by
 \begin{equation}
@@ -96,7 +107,8 @@ we can eliminate the derivatives of density and obtain the equation of fluid mot
 \rho \left( \frac{\partial v_i}{\partial t} + v_j \frac{\partial v_i}{\partial x_j} \right) = F_i + \frac{\partial \sigma_{ij}}{\partial x_j}.
 \end{equation}
 This can be expressed as
-\begin{equation} 
+\begin{equation}
+\label{eq:momentum_transport}
 \frac{D v_i}{\partial t} = \frac{F_i}{\rho} + \frac{1}{\rho}\frac{\partial \sigma_{ij}}{\partial x_j},
 \end{equation}
 where 
@@ -136,7 +148,76 @@ which implies that stress tensor must be symmetric
 \begin{equation}
 \sigma_{ij} = \sigma_{ji}.
 \end{equation}
-\bibliographystyle{prsty}
-\bibliography{mdornfe1.bib}
+\subsection{The Stress Tensor in a Static Fluid}
+It is a well known result from linear algebra that a symmetric matrix can be diagonalized by expressing its entries in a rotated coordinate system. The axes of this coordinate system are called the principle axes. Thus from the result of the previous section we can choose a set of principle axes to diagonalize the stress tensor at a single point in space. Let's call the diagonal elements of the rotated stress tensor $\sigma^{'}_{11}$, $\sigma^{'}_{22}$, and $\sigma^{'}_{33}$. It is another well known result from linear algebra that the sum of the diagonals of a matrix is invariant under a change of basis. Thus the trace of the stress tensor at the point in space can be expressed as
+\begin{equation}
+\sigma_{ii} = \sigma^{'}_{11} + \sigma^{'}_{22} + \sigma^{'}_{33},
+\end{equation}
+regardless of the chosen basis.
 
+Now let's consider the surface forces acting on an infinitesimal cubic volume in a static fluid. The cube is small enough such that the entries of the stress do not vary significantly throughout its volume. We can also choose the cube so its sides are aligned parallel to the principle axes of the stress tensor, which will ensure its off diagonal elements are $0$. We can then express the stress tensor as the sum of two matrices.
+\begin{equation}
+\boldsymbol{\sigma}=
+\begin{pmatrix}
+\frac{\sigma_{ii}}{3} & 0 & 0 \\
+0 & \frac{\sigma_{ii}}{3} & 0 \\
+0 & 0 & \frac{\sigma_{ii}}{3}
+\end{pmatrix}
++
+\begin{pmatrix}
+\sigma^{'}_{11}-\frac{\sigma_{ii}}{3} & 0 & 0 \\
+0 & \sigma^{'}_{22}-\frac{\sigma_{ii}}{3} & 0 \\
+0 & 0 & \sigma^{'}_{33}-\frac{\sigma_{ii}}{3}
+\end{pmatrix}
+\end{equation}
+By construction $Tr(\boldsymbol{\sigma})=\sigma_{ii}$, which also equals the trace of the first matrix on the right hand side. Thus the trace of second matrix must be $0$. From that we can conclude that there are forces compressing the fluid volume in the direction of two principle axes and one force tensioning the fluid volume in the direction of the other axis. This force distribution has the tendency to elongate and deform the volume. These forces cannot be balanced out by internal volume forces, since volume forces tend to $0$ faster than surfaces as we let the volume go to $0$. This presents an inconsistency, since a fluid is defined as a material that is incapable of withstanding a tendency of applied forces to change its shape. It follows that the diagonal components of the second matrix must all be $0$. Therefore the principle stresses must all be equal to $\frac{\sigma_{ii}}{3}$. We can define $p=-\frac{\sigma_{ii}}{3}$, which is called the static fluid pressure. Thus,
+\begin{equation}
+\sigma_{ij} = -p \delta_{ij}.
+\end{equation}
+The stress tensor in a static fluid then has the interpretation of isotropically compressing all fluid volumes with force per unit area equal to the static pressure.
+
+\subsection{The Stress Tensor in a Moving Fluid}
+In a moving fluid there a shear forces in addition the normal forces from the static pressure. To account for these shear forces we express the stress tensor as the sum of the static fluid part and a non-isotropic which accounts for shear forces that arise from the fluid motion.
+\begin{equation} 
+\label{eq:stress}
+\sigma_{ij} = -p \delta_{ij} + d_{ij}
+\end{equation}
+The tensor $d_{ij}$ is called the deviatoric stress tensor. It is symmetric, since $\sigma_{ij}$ must be symmetric. In addition, it has trace equal to $0$, since the trace of $\boldsymbol{\sigma}$ must equal the sum of the normal stresses. Furthermore, the deviatoric stress cannot depend on the absolute velocity of the fluid. Since for a fluid traveling at constant velocity we can always change our inertial frame of reference to one comoving with the fluid, and this transformation should not affect the stresses present in the fluid. Therefore, it is reasonable to assume $d_{ij}$ depends on gradients of fluid velocity. The simplest assumption for such a tensor is one for which it is a linear function of the velocity gradients. 
+\begin{equation} 
+d_{ij} = A_{ijkl} \frac{\partial v_k}{\partial x_l}.
+\end{equation}
+Fluids that obey such a tensor are known as Newtonian fluids. Although many fluids deviate from this assumption it will be more than sufficient for our purposes. It is also common to assume the fluid is isotropic, meaning the fluid has the same properties in all directions. For an isotropic fluid it is reasonable to expect the fourth order tensor $A_{ijkl}$ is isotropic. Thus any anisotropy in $d_{ij}$ is a result of the velocity gradients. The most general expression for an isotropic fourth order tensor is 
+\begin{equation}
+A_{ijkl} = \mu \delta_{ij}\delta_{kl} + \mu^{'} \delta_{ik}\delta_{jl} + \mu^{''} \delta_{il}\delta_{jk}
+\end{equation}
+Thus,
+\begin{equation}
+d_{ij} = \mu \frac{\partial v_k}{\partial x_k} + \mu^{'} \frac{\partial v_i}{\partial x_j}+\mu^{''} \frac{\partial v_j}{\partial x_i} 
+\end{equation}
+However, $d_{ij}$ must also be symmetric and traceless which means $\mu^{'}=\mu^{''}$ and $3\mu = -2\mu^{'}$. Therefore we can finally express the stress tensor as
+\begin{equation}
+\label{eq:deviatoric}
+d_{ij} = 2 \mu \left( e_{ij}- \frac{1}{3} e_{kk}\delta_{ij} \right),
+\end{equation}
+where
+\begin{equation}
+\label{eq:rate_of_strain}
+e_{ij}=\frac{1}{2}\left( \frac{\partial v_i}{\partial x_k} + \frac{\partial v_j}{\partial x_i} \right).
+\end{equation}
+The quantity $e_{ij}$ is known as the rate of strain tensor and the quantity $\mu$ has the interpretation of being the viscosity of the fluid.
+
+\section{The Navier-Stokes Equation}
+The momentum transport equation can be used in combination with the expression for the stress tensor in terms of the velocity gradients to obtain the equation of motion for a isotropic, Newtonian, classical fluid. Combining Eqs. \ref{eq:momentum_transport}, \ref{eq:stress}, \ref{eq:deviatoric}, and \ref{eq:rate_of_strain} we get
+\begin{equation}   
+\rho \frac{D v_i}{D t} = F_i - \frac{\partial p}{\partial x_i} + \mu \left( \frac{\partial^2 v_i}{\partial x_j^2} + \frac{1}{3} \frac{\partial^2 v_j}{\partial x_i x_j}\right)
+\end{equation}
+
+
+
+
+
+
+
+
+\bibliography{mdornfe1.bib}
 \end{document}
