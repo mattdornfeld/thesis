@@ -17,7 +17,7 @@
 \begin{document}
 
 \chapter{Fluid Mechanics and Acoustics Background}
-\section{Equations of Fluid Motion}
+\section{Conservation Laws}
 The state of a fluid at time t and position $\textbf{x}$ is determined by its velocity field $\textbf{v}(\textbf{x}, t)$ and any two thermodynamic variables. Common choices for these thermodynamic variables are the pressure field $p(\textbf{x}, t)$, density field $\rho(\textbf{x}, t)$, or temperature field $T(\textbf{x}, t)$. We thus need five scalar equations to specify the equations of motion for the fluid.
 
 \subsection{Mass Conservation}
@@ -51,8 +51,9 @@ This equation must be true for all volumes $V$. Thus, the integrand must be equa
 \end{equation}
 
 \subsection{Energy Conservation}
-For general fluid dynamics problems, especially ones in which there is significant heat conduction due to temperature gradients, the full energy transport equation must be used to describe the spatial and temporal evolution of energy distributions in the system. However, we are mostly concerned with the flow of air in the rodent vocal tract. Rats complete a full respiration cycle approximately eight times per second. Thus, it is not a bad approximation to neglect heat conduction and assume the air remains at room temperature. This assumption simplifies the energy analysis greatly. By neglecting heat conduction it can be assumed that the the fluid is homentropic, meaning the fluid's specifc entropy $s$ is constant and uniform. This allows the assumption that the fluid's pressure and density are related by an equation of the form
+For general fluid dynamics problems, especially ones in which there is significant heat conduction due to temperature gradients, the full energy transport equation must be used to describe the spatial and temporal evolution of energy distributions in the system. However, we are mostly concerned with the flow of air in the rodent vocal tract. Rats complete a full respiration cycle approximately eight times per second. Thus, it is not a bad approximation to neglect heat conduction and assume the air remains at room temperature. This assumption simplifies the energy analysis greatly. By neglecting heat conduction it can be assumed that the the fluid is homentropic, meaning the fluid's specific entropy $s$ is constant and uniform. This allows the assumption that the fluid's pressure and density are related by a constitutive equation of the form
 \begin{equation}
+\label{eq:constitutive}
 p = p(\rho, s).
 \end{equation}
 For an adiabatic ideal gas this equation is
@@ -206,18 +207,133 @@ e_{ij}=\frac{1}{2}\left( \frac{\partial v_i}{\partial x_k} + \frac{\partial v_j}
 \end{equation}
 The quantity $e_{ij}$ is known as the rate of strain tensor and the quantity $\mu$ has the interpretation of being the viscosity of the fluid.
 
-\section{The Navier-Stokes Equation}
+\section{The Navier-Stokes and Euler Equations}
 The momentum transport equation can be used in combination with the expression for the stress tensor in terms of the velocity gradients to obtain the equation of motion for a isotropic, Newtonian, classical fluid. Combining Eqs. \ref{eq:momentum_transport}, \ref{eq:stress}, \ref{eq:deviatoric}, and \ref{eq:rate_of_strain} we get
 \begin{equation}   
-\rho \frac{D v_i}{D t} = F_i - \frac{\partial p}{\partial x_i} + \mu \left( \frac{\partial^2 v_i}{\partial x_j^2} + \frac{1}{3} \frac{\partial^2 v_j}{\partial x_i x_j}\right)
+\rho \frac{D v_i}{D t} = F_i - \frac{\partial p}{\partial x_i} + \mu \left( \frac{\partial^2 v_i}{\partial x_j^2} + \frac{1}{3} \frac{\partial^2 v_j}{\partial x_i x_j}\right).
+\end{equation}
+Writing this in vector form it becomes
+\begin{equation}
+\label{eq:navier} 
+\rho \frac{D \textbf{v}}{D t} = \textbf{F} - \nabla p + \mu \left( \nabla^2 \textbf{v} + \frac{1}{3} \nabla (\nabla \cdot \textbf{v})\right).
+\end{equation}
+This is the Navier-Stokes equation. Its three components, along with the continuity equation (Eq. \ref{eq:continuity}), and a constitutive equation of the form Eq. \ref{eq:constitutive} give the five equations of motion necessary to solve for the three velocity components $v_i$, the pressure $p$, and the density $\rho$ for Newtonian homentropic flow in an isotropic fluid. In general this is a very difficult task and much work is done performing direct numerical simulations of these equations. In practice it is generally not necessary to use the equations of motion in their full form, and additional simplifying assumptions can be introduced. In the following sections I will discuss the special types of flow I have used to model the acoustics of the rat vocal tract.
+
+The first simplifying assumption is the neglecting of viscosity. In the Navier-Stokes equation, for flows with Reynold's numbers much greater than unity, the inertial terms become much greater than viscous terms. This allows one to neglect viscosity. The rat vocal folds have a radius of approximately $r=1$ mm, and the flow them has velocities on the order $U=30 \frac{m}{s}$. Thus the Reynold's number, $Re=\frac{r U}{\nu}$, (where $\nu$ is the kinematic viscosity of air) of this flow is on the order of $2000$. Therefore we will neglect viscosity in much of the analysis of this flow. The equation of motion for inviscid flow is called the Euler equation.
+\begin{equation}
+\label{eq:euler} 
+\rho \frac{D \textbf{v}}{D t} = \textbf{F} - \nabla p.
+\end{equation} 
+
+
+\section{Linear Acoustic Flow}
+\subsection{The Acoustic Wave Equation}
+This type of flow models the propagation of sound in an inviscid fluid. In later chapters, we will use this type of flow to model the the acoustics of the rodent upper vocal tract. The linear nature of this flow comes from the fact that only small fluctuation from a quasi-steady mean flow. The intensity of sound pressure in air is measured using a decibel scale. The decibel value of a sound is calculated using the expression
+\begin{equation}
+20 log_{10} \left( \frac{|p|}{p_{ref}} \right),
+\end{equation}
+where the reference pressure $p_ref=2 \times 10^{-5} \frac{N}{m^2}$. An acoustic perturbation of $p=1 atm$ has an intensity of about $194$ dB, which is deafening. 
+
+The pressure, density, and velocity can be written as the sum of a mean and small fluctuating component. $p=p_0 + p^{'}$, $v=v_0 + v^{'}$, $\rho=\rho_0 + \rho^{'}$. Now substituting these assumptions into Eqs. \ref{eq:euler} and \ref{eq:continuity},
+\begin{equation}
+\label{eq:linear1}
+\begin{split}
+\rho_0 \frac{\partial \textbf{v}^{'}}{\partial t} + \nabla p^{'} &= \textbf{F} \\
+\frac{1}{\rho_0}\frac{\partial \rho^{'}}{\partial t} + \nabla \cdot \textbf{v}^{'} = q,
+\end{split}
+\end{equation}
+In this step products of primed quantities have been neglected. Since $\frac{v^{'}}{v_0} \ll 1$, $\frac{p^{'}}{p_0} \ll 1$, and $\frac{\rho^{;'}}{\rho_0} \ll 1$ the products of primed quantities will be even smaller and can be safely neglected. In addition, the fact that mean quantities must also satisfy the equations of motion has been used. The equations for the mean quantities have been subtracted off from the equations for the full quantities. Lastly, a volume source term $q$ has been introduced into the continuity equation to account for changes in fluid volume, which can be a source of sound. Eliminating $\textbf{v}^{'}$ between the linearized momentum and continuity equations,
+\begin{equation}
+\label{eq:linear2}
+\frac{\partial^2 \rho^{'}}{\partial t^2} - \nabla^2 p^{'} = \rho_0 \frac{\partial q}{\partial t} - \nabla \cdot \textbf{F}.
 \end{equation}
 
+Now a constitutive relation between $p^{'}$ and $\rho^{'}$ is needed. This relation for the undisturbed and disturbed states can be written
+\begin{equation}
+\begin{split}
+p_0 &= p(\rho_0, s) \\
+p_0 + p^{'} = p(\rho_0+\rho^{'},s) \approx p(p_0, s) + \left( \frac{\partial p}{\partial \rho}(\rho,s) \right)_0 \rho^{'}.
+\end{split}
+\end{equation}
+The derivative in parentheses has dimensions of velocity squared and has the interpretation of being the square speed of sound in the medium $c_0$. Inserting this interpretation into the above equations and using the first equation to eliminate $p_0$ and $p(p_0, s)$ from the second equation we get a relationship between $ p^{'}$ and $\rho^{'}$.
+\begin{equation} 
+p^{'} = c_0^2 \rho^{'}.
+\end{equation}
+Using this equation to eliminate $\rho^{'}$ from Eq. \ref{eq:linear2} we get the acoustic wave equation for pressure perturbations driven by volume sources $q$ and body forces $\textbf{F}$.
+\begin{equation} 
+\label{eq:pressure_wave}
+\left( \frac{1}{c_0^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)p^{'}=\rho_0 \frac{\partial q}{\partial t} - \nabla \cdot \textbf{F}
+\end{equation}
 
+If there are no body forces (i.e. $\textbf{F}=0$), then Eq. \ref{eq:linear1} implies the existence of a velocity potential $\phi^{'}$ such that
+\begin{equation}
+\begin{split}
+\textbf{v}^{'} &=\nabla \phi^{'} \\
+p^{'} &= -\rho_0 \frac{\partial \phi^{'}}{\partial t}
+\end{split}
+\end{equation}
+Acoustic flow is generally irrotational potential flow as long as there are no body forces introducing vorticity. In the upper vocal tract the only body force is gravity, which is negligible compared to other effects of the flow, so the assumption of $\textbf{F}=0$ is valid for our situation. Inserting this expression into Eq. \ref{eq:pressure_wave} we get the acoustic wave equation for the velocity potential.
+\begin{equation}
+\label{eq:potential_wave}
+\left( \frac{1}{c_0^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)\phi^{'}= -q(\textbf{x}, t).
+\end{equation}
+\subsection{Acoustic Boundary Conditions}
 
+\section{Inviscid, Incompressible, Potential Flow}
+\subsection{Bernoulli's Equation}
+For this type of flow one simplifying assumption from the previous section will be relaxed and another simplifying assumption will be introduced. The flow will no longer be assumed to be linear, which was important in deriving the acoustic wave equation. However the inviscid and irrotational assumptions will be kept. These assumptions will allow the derivation of a conservation equation known as Bernoulli's equation. In addition it will be assumed the flow is incompressible, meaning variations in density can be neglected. This will simplify the continuity equation. In a later chapter we will use this type of flow to model the movement of air through the rat vocal folds throughout a vocalization. The relaxation of the linear assumption is important as it will allow us to take into account turbulent losses due to viscosity, even though we are analyzing the motion of an inviscid fluid. The incompressible assumption will simplify the continuity equation, which will allow us to analyze the flow without resorting to direct numerical simulations. In the previous section the equation of motion for an inviscid fluid was derived.
+\begin{equation}
+\rho \frac{D \textbf{v}}{D t} = -\nabla p.
+\end{equation}
+Writing out the convective derivative this becomes
+\begin{equation}
+\rho \left( \frac{\partial  \textbf{v}}{\partial t} +  (\textbf{v} \cdot \nabla)  \textbf{v} \right) = -\nabla p.
+\end{equation}
+Now we use the vector identity $(\textbf{v} \cdot \nabla)  \textbf{v}=\frac{1}{2} \nabla ( \textbf{v} \cdot \textbf{v} )$ to write the Euler equation as
+\begin{equation}
+\rho \left( \frac{\partial  \textbf{v}}{\partial t} +  \frac{1}{2} \nabla ( \textbf{v} \cdot \textbf{v} ) \right) = -\nabla p.
+\end{equation}
+Furthermore we can use the fact that the fluid is irrotational to write the velocity field as the gradient of a potential function $ \textbf{v} = \nabla \phi$. Substituting this into the above equation and factoring out the del operator we get
+\begin{equation}
+\nabla \left( \frac{\partial  \phi}{\partial t} +  \frac{1}{2}  \textbf{v} \cdot \textbf{v} + \frac{p}{\rho} \right) = 0.
+\end{equation}
+Now we can integrate this expression between any two points in the fluid. The curve connecting these two points is irrelevant, since the fluid is irrotational. It is only the end points that matter.
+\begin{equation}
+\int_1^2 d\textbf{s} \cdot \nabla \left( \frac{\partial  \phi}{\partial t} +  \frac{1}{2}  \textbf{v} \cdot \textbf{v} + \frac{p}{\rho} \right) = 0.
+\end{equation}
+Using the fundamental theorem of calculus we get Bernoulli's equation for an unsteady, inviscid, potential flow.
+\begin{equation}
+\frac{\partial  \phi_1}{\partial t} +  \frac{v_1^2}{2} + \frac{p_1}{\rho}=\frac{\partial  \phi_2}{\partial t} +  \frac{v_2^2}{2} + \frac{p_2}{\rho},
+\end{equation}
+where we have defined $v^2 = \textbf{v} \cdot \textbf{v}$. The interpretation of this equation is that quantity on either side is the same throughout all points in the fluid.
 
-
-
-
+\subsection{The Continuity Equation}
+Bernoulli's equation describes conservation of energy between any two points in an inviscid irrotational fluid. In practice a conservation of mass equation is also needed to fully determine the flow variables. We will eventually the rat vocal as a series of cylindrical pipes. For this physical configuration the incompressible continuity equation takes an especially simple form. If we neglect variations in density in Eq. \ref{eq:continuity}, we get the incompressible continuity equation
+\begin{equation} 
+\label{eq:incompressible}
+\nabla \cdot \textbf{v}=0.
+\end{equation}
+Suppose we have two points $1$ and $2$, separated by an axial distance in a cylindrical pipe of varying area. The area of the pipe at point $1$ is $A_1$, and the area of the pipe at point $2$ is $A_2$. Integrating Eq. \ref{eq:incompressible} over the volume $V$ of the pipe bounded by areas $A_1$ and $A_2$
+\begin{equation} 
+\int_V dV \nabla \cdot \textbf{v}=0.
+\end{equation}
+Now we can use the divergence theorem to write this integral as a surface integral over the surface area $A$ of $V$.
+\begin{equation} 
+\int_A d\textbf{A} \cdot \textbf{v}=0.
+\end{equation}
+Now because of the zero penetration condition (i.e. there can not be any fluid flowing into the walls of the pipe) the quantity $d\textbf{A} \cdot \textbf{v}=0$ on the walls of the pipe. So the above integral reduces to the sum of surface integrals over $A_1$ and $A_2$.
+\begin{equation} 
+\int_{A_1} d\textbf{A} \cdot \textbf{v}_1 + \int_{A_2} d\textbf{A} \cdot \textbf{v}_2=0.
+\end{equation}
+This equation states that the volume flow of fluid through surface $A_1$ must be balanced out by the flow of fluid through surface $A_2$. If we assume the fluid flows through the pipe in one direction (say from $1$ to $2$). Further we can assume that flow velocity only varies axially, not radially or azimuthally, then the quantity $d\textbf{A} \cdot \textbf{v}$ is constant on $A_1$ and $A_2$, and we can write
+\begin{equation} 
+A_1 \textbf{v}_1 \cdot \textbf{n}_1 + A_2 \textbf{v}_2 \cdot \textbf{n}_2 =0,
+\end{equation}
+where $\textbf{n}_1$ and $\textbf{n}_2$ are the outward normal vectors for surfaces $A_1$ an $A_2$. If we further assume the flow is axial, this simplifies even further.
+\begin{equation}
+A_1 v_1 = A_2 v_2.
+\end{equation}
+This continuity equation for axial incompressible pipe flow. We will later use it in our analysis of the flow through the rat vocal folds.
 
 \bibliography{mdornfe1.bib}
-\end{document}
+\end{document} 
