@@ -69,25 +69,6 @@
   Url                      = {http://dx.doi.org/10.1126/science.1157632}
 }
 
-@Article{Batchelor1962,
-  Title                    = {Analysis of the stability of axisymmetric jets},
-  Author                   = {Batchelor, G. K. and Gill, A. E.},
-  Journal                  = {J. Fluid Mech.},
-  Year                     = {1962},
-
-  Month                    = {Dec},
-  Number                   = {04},
-  Pages                    = {529},
-  Volume                   = {14},
-
-  Doi                      = {10.1017/s0022112062001421},
-  ISSN                     = {1469-7645},
-  Owner                    = {matthew},
-  Publisher                = {Cambridge University Press (CUP)},
-  Timestamp                = {2015.02.24},
-  Url                      = {http://dx.doi.org/10.1017/S0022112062001421}
-}
-
 @Article{batchelor1962,
   Title                    = {{Analysis of the stability of axisymmetric jets}},
   Author                   = {Batchelor, G. K. and Gill, A. E.},
@@ -110,6 +91,25 @@
   Priority                 = {2},
   Timestamp                = {2016.02.02},
   Url                      = {http://dx.doi.org/10.1017/s0022112062001421}
+}
+
+@Article{Batchelor1962,
+  Title                    = {Analysis of the stability of axisymmetric jets},
+  Author                   = {Batchelor, G. K. and Gill, A. E.},
+  Journal                  = {J. Fluid Mech.},
+  Year                     = {1962},
+
+  Month                    = {Dec},
+  Number                   = {04},
+  Pages                    = {529},
+  Volume                   = {14},
+
+  Doi                      = {10.1017/s0022112062001421},
+  ISSN                     = {1469-7645},
+  Owner                    = {matthew},
+  Publisher                = {Cambridge University Press (CUP)},
+  Timestamp                = {2015.02.24},
+  Url                      = {http://dx.doi.org/10.1017/S0022112062001421}
 }
 
 @Article{Berke2010,
@@ -984,29 +984,6 @@
   Publisher                = {National Academy of Sciences},
   Timestamp                = {2016.02.02},
   Url                      = {http://dx.doi.org/10.1073/pnas.0601262103}
-}
-
-@Article{Riede2011b,
-  Title                    = {{Elasticity and stress relaxation of a very small vocal fold}},
-  Author                   = {Riede, Tobias and York, Alexander and Furst, Stephen and M\"{u}ller, Rolf and Seelecke, Stefan},
-  Journal                  = {Journal of Biomechanics},
-  Year                     = {2011},
-
-  Month                    = jul,
-  Number                   = {10},
-  Pages                    = {1936--1940},
-  Volume                   = {44},
-
-  Abstract                 = {{Across mammals many vocal sounds are produced by airflow induced vocal fold oscillation. We tested the hypothesis that stress–strain and stress-relaxation behavior of rat vocal folds can be used to predict the fundamental frequency range of the species' vocal repertoire. In a first approximation vocal fold oscillation has been modeled by the string model but it is not known whether this concept equally applies to large and small species. The shorter the vocal fold, the more the ideal string law may underestimate normal mode frequencies. To accommodate the very small size of the tissue specimen, a custom-built miniaturized tensile test apparatus was developed. Tissue properties of 6 male rat vocal folds were measured. Rat vocal folds demonstrated the typical linear stress–strain behavior in the low strain region and an exponential stress response at strains larger than about 40\%. Approximating the rat's vocal fold oscillation with the string model suggests that fundamental frequencies up to about 6 kHz can be produced, which agrees with frequencies reported for audible rat vocalization. Individual differences and time-dependent changes in the tissue properties parallel findings in other species, and are interpreted as universal features of the laryngeal sound source.}},
-  Citeulike-article-id     = {9293598},
-  Citeulike-linkout-0      = {http://dx.doi.org/10.1016/j.jbiomech.2011.04.024},
-  Doi                      = {10.1016/j.jbiomech.2011.04.024},
-  ISSN                     = {00219290},
-  Owner                    = {matthew},
-  Posted-at                = {2012-05-15 21:24:52},
-  Priority                 = {2},
-  Timestamp                = {2016.02.02},
-  Url                      = {http://dx.doi.org/10.1016/j.jbiomech.2011.04.024}
 }
 
 @Article{Riede2011c,

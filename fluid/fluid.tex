@@ -335,5 +335,30 @@ A_1 v_1 = A_2 v_2.
 \end{equation}
 This continuity equation for axial incompressible pipe flow. We will later use it in our analysis of the flow through the rat vocal folds.
 
+\section{Nonlinear Energy Losses at an Orifice}
+In this section we will use Bernoulli's equation to analyze the energy losses of a fluid as it flows through a circular aperture of area $A_f$ and length $L$. In a later chapter we will use the results from this section to model the flow of air through the rat vocal folds. Let's consider two points directly before and after the start of the aperture. We'll call these points $1$ and $2$. The pressure at those points is $p_1$ and $p_2$ respectively. Now as first approximation, let's consider the air in the circular aperture as an incompressible cylindrical slug, being accelerated by the pressure difference $\Delta p = p_2 - p_1$. From Newton's second law the time rate of change of the velocity of the slug is 
+\begin{equation}  
+\label{eq:linear_aperture}
+\rho_0 L A_f \dot{u}_f = p_1 A_f - p_2 A_f = -\Delta p A_f,
+\end{equation}
+where $\rho_0 L A_f$ is the mass of the air in the aperture and $u_f$ is its velocity (we are using the subscript $f$ for these quantities because we later use this analysis to model the flow through the vocal folds). If we force the slug of air with a sinusoidal pressure difference of the form
+\begin{equation}
+\Delta p = |p| \cos{\omega t},
+\end{equation}
+the velocity of the slug of air can be calculated with Eq. \ref{eq:linear_aperture}.
+\begin{equation}
+u_f = -\frac{|p|}{\rho_0 L \omega} \sin{omega t}.  
+\end{equation}
+Thus, the amplitude of the velocity oscillations is $\frac{|p|}{\rho_0 L \omega}$. This is exactly the relationship Ingard and Ising measured for low velocity flows through a circular orifice. They found as long as the velocities were below a threshold value value the, the relationship between pressure and velocity amplitudes was linear. However, they found something somewhat surprising. For velocities greater than that threshold value the relationship became quadratic \cite{Ingard1967}. Our above analysis does not predict this relationship because in calculating the relationship between pressure and velocity amplitudes we neglected the formation of the air into a jet. This jet has kinetic energy associated with it, which is lost due to turbulent dissipation when the jet expands outward on the other side of the orifice. We can use Bernoulli's equation to calculate this nonlinear energy loss. Writing down Bernoulli's Equation between points $1$ and $2$, where we assume the assume the air flowing through the aperture has already formed into a jet with velocity $u_f$ at point $1$. Furthermore, we also assume at point $2$ the kinetic energy has been completely dissipated due to turbulence.
+\begin{equation}  
+\delta_p - \frac{\rho_0}{2} u_f^2 + \rho_0 \frac{\partial }{\partial t}\left( \phi_2 - \phi_1  \right) = 0.
+\end{equation}
+The velocity potential difference is related to the velocity of the air in the aperture $u(x)$ through the equation $\phi_2 - \phi_1 = \int_1^2 u(x) dx$. As long as the radius of the aperture is constant we can approximate the velocity of the air in the aperture as constant and the potential difference can be written as $\phi_2 - \phi_1 = u_f L$. The energy balance equation becomes 
+\begin{equation}  
+\label{eq:nonlinear_aperture}
+\delta_p - \frac{\rho_0}{2} u_f^2 + \rho_0 L \dot{u}_f = 0.
+\end{equation}
+This equation gives the quadratic relationship, observed by Ingard and Ising, between the pressure drop across the orifice and the velocity of flow through the orifice. Furthermore, it reduces to Eq. \ref{eq:linear_aperture} for low values of $u_f$. This result is actually quite interesting. Even though we assumed inviscid and irrotational flow through the aperture we obtained an expression for the nonlinear energy losses due to viscous turbulent dissipation. The relevance of this result will become more apparent in a later chapter when we use the pressure on the far side of the aperture to model the driving of resonance modes in the upper vocal tract of the rat. The nonlinear energy losses will serve to keep the time domain simulations bounded.  
+
 \bibliography{mdornfe1.bib}
 \end{document} 
