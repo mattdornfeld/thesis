@@ -267,18 +267,101 @@ Using this equation to eliminate $\rho^{'}$ from Eq. \ref{eq:linear2} we get the
 
 If there are no body forces (i.e. $\textbf{F}=0$), then Eq. \ref{eq:linear1} implies the existence of a velocity potential $\phi^{'}$ such that
 \begin{equation}
+\label{eq:velocity_potential}
 \begin{split}
 \textbf{v}^{'} &=\nabla \phi^{'} \\
 p^{'} &= -\rho_0 \frac{\partial \phi^{'}}{\partial t}
 \end{split}
 \end{equation}
-Acoustic flow is generally irrotational potential flow as long as there are no body forces introducing vorticity. In the upper vocal tract the only body force is gravity, which is negligible compared to other effects of the flow, so the assumption of $\textbf{F}=0$ is valid for our situation. Inserting this expression into Eq. \ref{eq:pressure_wave} we get the acoustic wave equation for the velocity potential.
+Acoustic flow is generally irrotational potential flow as long as there are no body forces introducing vorticity. In the upper vocal tract the only body force is gravity, which is negligible compared to other effects of the flow, so the approximation of $\textbf{F}=0$ is valid for our situation. Inserting this expression into Eq. \ref{eq:pressure_wave} we get the acoustic wave equation for the velocity potential.
 \begin{equation}
 \label{eq:potential_wave}
 \left( \frac{1}{c_0^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)\phi^{'}= -q(\textbf{x}, t).
 \end{equation}
-\subsection{Acoustic Boundary Conditions}
+\section{Acoustic Boundary Conditions and an Example}
+\subsection{Formulation of the Boundary Value Problem}
+The Eq. \ref{eq:potential_wave} is an initial-boundary value problem, meaning it requires both initial and boundary conditions to specify the solution. The initial conditions do not pose any difficulty, and usually we just assume the system starts from rest ($\phi(\textbf{x},0)=0$). The boundary conditions, on the other hand, require a little more care in formulation. As discussed above we will model the upper rat vocal tract as a cylindrical pipe. Furthermore, we only consider the axial resonance modes. The radial resonance modes only become significant at much higher frequencies than we care concerned with. The azimuthal modes are only excited by azimuthal driving forces and it is worthwhile to explore the axisymmetric system before trying to introduce azimuthal asymmetries. Thus, the Laplacian operator reduces to $\nabla^2 \rightarrow \frac{\partial^2 }{\partial x^2}$. 
 
+The driving force, which excites the resonance frequencies of the pipe, is air emerging from the vocal folds. We will treat this as a pressure source at the origin of the pipe $p(0,t)=p_{src}(t)$. This will be the only driving force in the system so $q(\textbf{x}, t)=0$. From Eq. \ref{eq:velocity_potential} we know $p= -\rho_0 \frac{\partial \phi}{\partial t}$. Using this equation we can write the boundary condition at $x=0$ for Eq. \ref{eq:potential_wave}.
+\begin{equation}
+\dot{\phi}(0,t) = - \frac{p_{src}(t)}{\rho}.
+\end{equation}
+This is an inhomogeneous boundary condition and it is helpful to transform it into a homogeneous boundary condition through a substitution. The substitution,
+\begin{equation}   
+\phi(x,t) = \psi(x,t) + \frac{x-L}{L}\int_0^t \frac{p_{src}(t)}{\rho}dt,
+\end{equation}
+transform the inhomogeneous boundary condition into a inhomogeneous driving term in the wave equation
+\begin{equation}
+\label{eq:one_boundary}
+\begin{split}
+\frac{\partial^2 \psi}{\partial x^2} - \frac{1}{c_0^2}\frac{\partial^2 \psi}{\partial t^2} &= \frac{x-L}{L}\frac{\dot{p}_src}{\rho c_0^2} \\
+\dot{\psi}(0,t) &= 0
+\end{split}
+\end{equation}
+
+The Eqs. \ref{eq:one_boundary} form an inhomogeneous initial value problem with one boundary condition determined. For the problem to be well posed we need to formulate the second boundary condition at the end of the pipe. Once we have the second boundary condition we can solve the homogeneous version of the problem in the frequency domain to get a set of spatial eigenfunctions. The solutions of the inhomogeneous problem in the time domain can then be expanded on to the spatial eigenfunctions. Using this method we can account for inhomogeneities and transients due to the pressure driving force. The boundary conditions at the end of the pipe are most easily formulated in the frequency domain so we will transform our problem to that space. A transformation to Fourier space is appropriate when studying standing wave solution and a transformation to Laplace space when studying dissipative solutions. An important part of our later analysis is acoustic radiation from the mouth of the rat. This makes the problem inherently dissipative and suggests a solution in Laplace space. This transformation can effectively be done by assuming a solution of the form $\psi(x,t)=\phi_m(x) e^{s_m t}$, where $s_m = i\omega_m - \alpha_m$. The minus sign in front of $\alpha_m$ indicates we expect the energy of our system to dissipate over time due to radiation. Note if we set $\alpha_m=0$ then the system becomes conservative and we will get standing wave solutions. Substituting this assumption into the homogeneous form of Eq. \ref{eq:one_boundary} we get Helmholtz's equation.
+\begin{equation}
+\label{eq:helmholtz}
+\begin{split}
+\frac{\partial^2 \hat{\phi_m}}{\partial x^2} - \frac{s^2}{c_0^2} \hat{\phi_m} &= 0 \\
+\hat{\phi_m}(0) &= 0
+\end{split}
+\end{equation}
+
+Now that we have our problem in the frequency domain we are in the position to introduce the idea of impedance boundary conditions. The impedance of surface $S$ is defined as 
+\begin{equation}
+\label{eq:impedance_definition}
+Z(\textbf{x}, \omega) = \frac{\hat{p}(\textbf{x}, \omega)}{\hat{\textbf{v}}(\textbf{x}, \omega)] \cdot \textbf{n}_S(\textbf{x})}.
+\end{equation}
+Here $\hat{p}$ and $\hat{\textbf{v}}$ are the pressure and velocity transformed into the frequency domain, and $textbf{n}_S$ is the outward normal vector to the surface $S$. In general the impedance depends not only on the properties of the surface $S$ but also on the acoustic field passing through it. In this situation the impedance is of limited interest. However, if $S$ is a special type of surface called a locally reacting surface then depends only on $S$ and not on the acoustic field passing through it. In this case the impedance becomes very important because it allows us to formulate boundary conditions for the acoustic field on that surface. Inserting the frequency transformed versions of Eqs. \ref{eq:velocity_potential} into Eq. \ref{eq:impedance_definition} we get a boundary condition for the acoustic wave equation on the surface $S$.
+\begin{equation}
+s_m \rho \hat{\phi}(\textbf{x}, \omega_m) + Z(\textbf{x}, \omega_m) \nabla \hat{\phi}(\textbf{x}, \omega_m) \cdot \textbf{n}_S(\textbf{x}) = 0.
+\end{equation}
+In our case $S$ will be the disk that forms the exit of the pipe at $x=L$. In general the impedance of this surface will not depend on the radial or azimuthal coordinates and we can write the boundary condition for Eq. \ref{eq:helmholtz} at $x=L$ as 
+\begin{equation}
+\label{eq:boundary_two}
+s_m \rho \hat{\phi}_m(L, \omega_m) + Z(\omega_m) \frac{\partial }{\partial x}\hat{\phi}_m(L, \omega_m)= 0.
+\end{equation}
+To use this as a boundary condition we need the specific form of $Z(\omega)$. To calculate this we need to introduce extra assumptions about the flow through the pipe exit. In the next section we will discuss a well known model for the acoustic flow through the exit of a cylindrical pipe.
+\subsection{Calculation of the Mouth Impedance}
+To calculate the spatial eigenmodes we first must derive an expression for the exit impedance Z. This can be done by assuming the exit of the pipe is a circular piston of radius $a$ on which each infinitesimal area acts as the infinitesimal source of a spherical wave. The pressure and velocity solutions of the free space spherical wave equation are.
+\begin{equation}
+\label{eq:spherical_wave}
+\begin{split}
+p(r,t) &= \frac{A}{r} e^{i(\omega t-kr)} \\ v(r,t) &= \frac{Ak}{\rho \omega r} \left( 1 - \frac{i}{kr} \right)e^{i(\omega t-kr)},
+\end{split}
+\end{equation}
+where r is the distance from the source, k is the wave number, $\omega$ is the angular frequency, and A is a constant that depends on the strength of the source. We can determine an expression for A by assuming the source is a sphere of radius $\epsilon$ vibrating with normal velocity $v(\epsilon)$. The volume flow generated at the surface of the sphere is $q = 4 \pi \epsilon^2 v(\epsilon) e^{i \omega t}$. Combining this with Eq. \ref{eq:spherical_wave} we find $A=\frac{q \rho \omega}{4 \pi} \frac{e^{ik\epsilon}}{k\epsilon-i}$. For $k\epsilon \ll 1$ this simplifies to $A \approx \frac{i q \rho \omega}{4 \pi}$. Thus, the infinitesimal pressure generated by a small area $dS$ on another area $dS'$ is
+\begin{equation}
+\label{eq:dp_at_ds_prime}
+dp_{dS'} = \frac{i \rho \omega}{4 \pi} \frac{e^{i(\omega t-k|\textbf{r}-\textbf{r}^\prime|)}}{|\textbf{r}-\textbf{r}^\prime|} dq = \frac{i U_0 \rho \omega}{4 \pi} \frac{e^{i(\omega t-k|\textbf{r}-\textbf{r}^\prime|)}}{|\textbf{r}-\textbf{r}^\prime|} dS,
+\end{equation}  
+where $|\textbf{r}-\textbf{r}^\prime|$ is the distance between $dS$ and $dS'$. The second equality comes from the fact that the acoustic strength of the small piece of area is given by $dq = U_0 dS$, where $U_0$ is the velocity flowing through that area. We can find the total pressure on $dS'$ by integrating Eq. \ref{eq:dp_at_ds_prime} over the $s$ coordinate.
+\begin{equation}
+\label{eq:p_at_ds_prime}
+p_{dS'} = \frac{i U_0 \rho \omega}{4 \pi} \int \frac{e^{i(\omega t-k|\textbf{r}-\textbf{r}^\prime|)}}{|\textbf{r}-\textbf{r}^\prime|} dS.
+\end{equation}
+The infinitesimal force generated on the piston by the pressure on $dS'$ is $df = p_{dS'} dS'$. Thus, we can find the total force on the piston by multiplying Eq. \ref{eq:p_at_ds_prime} by $dS'$ and integrating over the $s'$ coordinate.
+\begin{equation}
+f = \frac{i U_0 \rho \omega}{4 \pi} \int \int \frac{e^{i(\omega t-k|\textbf{r}-\textbf{r}^\prime|)}}{|\textbf{r}-\textbf{r}^\prime|} dS dS'.
+\end{equation}
+Evaluating this integral we find
+\begin{equation}
+f=\rho c \pi a^2 U_0 e^{i \omega t} \left(1 - \frac{J_1(2ka)}{ka} + i \frac{H_1(ka)}{ka} \right),
+\end{equation}
+where $J_1$ is the Bessel function of the first kind of order 1 and $H_1$ is the Stuve function of order 1. Recalling from the the previous section the specific acoustic impedance of the piston for a sinusoidal driving force of frequency $\omega$ is defined as 
+\begin{equation}
+Z = \frac{p}{U_0 e^{i \omega t}} = \frac{f/ \pi a^2 }{U_0 e^{i \omega t}}.
+\end{equation}
+Substituting in our expression for $f$ we get
+\begin{equation}
+\label{eq:mouth_impedance}
+Z = \rho c \left(1 - \frac{J_1(2ka)}{ka} + i \frac{H_1(ka)}{ka} \right).
+\end{equation}
+Thus, we can think of the end of the pipe as an acoustic load with resistance $R = \rho c_0 \left(1 - \frac{J_1(2 k a)}{k a} \right)$ and reactance $X = \rho c \frac{H_1(k a)}{k a}$. From now on we will drop the stars in these quantities to indicate they are non dimensional. Now that we have an expression for the exit impedance the spatial boundary value problem is well determined, and we can calculate the spatial eigenmodes.
+
+\subsection{An Example}
+Now that we have an expression for the mouth impedance we can solve the boundary value problem determined by Eqs. \ref{eq:helmholtz} and \ref{eq:boundary_two}. First we must acknowledge the difficulty 
 \section{Inviscid, Incompressible, Potential Flow}
 \subsection{Bernoulli's Equation}
 For this type of flow one simplifying assumption from the previous section will be relaxed and another simplifying assumption will be introduced. The flow will no longer be assumed to be linear, which was important in deriving the acoustic wave equation. However the inviscid and irrotational assumptions will be kept. These assumptions will allow the derivation of a conservation equation known as Bernoulli's equation. In addition it will be assumed the flow is incompressible, meaning variations in density can be neglected. This will simplify the continuity equation. In a later chapter we will use this type of flow to model the movement of air through the rat vocal folds throughout a vocalization. The relaxation of the linear assumption is important as it will allow us to take into account turbulent losses due to viscosity, even though we are analyzing the motion of an inviscid fluid. The incompressible assumption will simplify the continuity equation, which will allow us to analyze the flow without resorting to direct numerical simulations. In the previous section the equation of motion for an inviscid fluid was derived.
@@ -293,11 +376,11 @@ Now we use the vector identity $(\textbf{v} \cdot \nabla)  \textbf{v}=\frac{1}{2
 \begin{equation}
 \rho \left( \frac{\partial  \textbf{v}}{\partial t} +  \frac{1}{2} \nabla ( \textbf{v} \cdot \textbf{v} ) \right) = -\nabla p.
 \end{equation}
-Furthermore we can use the fact that the fluid is irrotational to write the velocity field as the gradient of a potential function $ \textbf{v} = \nabla \phi$. Substituting this into the above equation and factoring out the del operator we get
+Furthermore we can use the fact that the fluid is irrotational to write the velocity field as the gradient of a potential function $ \textbf{v} = \nabla \phi$. Substituting this into the above equation and factoring out the $\nabla$ operator we get
 \begin{equation}
 \nabla \left( \frac{\partial  \phi}{\partial t} +  \frac{1}{2}  \textbf{v} \cdot \textbf{v} + \frac{p}{\rho} \right) = 0.
 \end{equation}
-Now we can integrate this expression between any two points in the fluid. The curve connecting these two points is irrelevant, since the fluid is irrotational. It is only the end points that matter.
+In this step we have used the fact that the fluid is incompressible, since we assumed $\rho$ is constant when we factored out the $\nabla$ operator. Now we can integrate this expression between any two points in the fluid. The curve connecting these two points is irrelevant, since the fluid is irrotational. It is only the end points that matter.
 \begin{equation}
 \int_1^2 d\textbf{s} \cdot \nabla \left( \frac{\partial  \phi}{\partial t} +  \frac{1}{2}  \textbf{v} \cdot \textbf{v} + \frac{p}{\rho} \right) = 0.
 \end{equation}
@@ -351,7 +434,7 @@ u_f = -\frac{|p|}{\rho_0 L \omega} \sin{omega t}.
 \end{equation}
 Thus, the amplitude of the velocity oscillations is $\frac{|p|}{\rho_0 L \omega}$. This is exactly the relationship Ingard and Ising measured for low velocity flows through a circular orifice. They found as long as the velocities were below a threshold value value the, the relationship between pressure and velocity amplitudes was linear. However, they found something somewhat surprising. For velocities greater than that threshold value the relationship became quadratic \cite{Ingard1967}. Our above analysis does not predict this relationship because in calculating the relationship between pressure and velocity amplitudes we neglected the formation of the air into a jet. This jet has kinetic energy associated with it, which is lost due to turbulent dissipation when the jet expands outward on the other side of the orifice. We can use Bernoulli's equation to calculate this nonlinear energy loss. Writing down Bernoulli's Equation between points $1$ and $2$, where we assume the assume the air flowing through the aperture has already formed into a jet with velocity $u_f$ at point $1$. Furthermore, we also assume at point $2$ the kinetic energy has been completely dissipated due to turbulence.
 \begin{equation}  
-\delta_p - \frac{\rho_0}{2} u_f^2 + \rho_0 \frac{\partial }{\partial t}\left( \phi_2 - \phi_1  \right) = 0.
+\Delta_p - \frac{\rho_0}{2} u_f^2 + \rho_0 \frac{\partial }{\partial t}\left( \phi_2 - \phi_1  \right) = 0.
 \end{equation}
 The velocity potential difference is related to the velocity of the air in the aperture $u(x)$ through the equation $\phi_2 - \phi_1 = \int_1^2 u(x) dx$. As long as the radius of the aperture is constant we can approximate the velocity of the air in the aperture as constant and the potential difference can be written as $\phi_2 - \phi_1 = u_f L$. The energy balance equation becomes 
 \begin{equation}  

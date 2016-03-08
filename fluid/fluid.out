@@ -10,8 +10,11 @@
 \BOOKMARK [1][-]{section.1.3}{The Navier-Stokes and Euler Equations}{chapter.1}% 10
 \BOOKMARK [1][-]{section.1.4}{Linear Acoustic Flow}{chapter.1}% 11
 \BOOKMARK [2][-]{subsection.1.4.1}{The Acoustic Wave Equation}{section.1.4}% 12
-\BOOKMARK [2][-]{subsection.1.4.2}{Acoustic Boundary Conditions}{section.1.4}% 13
-\BOOKMARK [1][-]{section.1.5}{Inviscid, Incompressible, Potential Flow}{chapter.1}% 14
-\BOOKMARK [2][-]{subsection.1.5.1}{Bernoulli's Equation}{section.1.5}% 15
-\BOOKMARK [2][-]{subsection.1.5.2}{The Continuity Equation}{section.1.5}% 16
-\BOOKMARK [1][-]{section.1.6}{Nonlinear Energy Losses at an Orifice}{chapter.1}% 17
+\BOOKMARK [1][-]{section.1.5}{Acoustic Boundary Conditions and an Example}{chapter.1}% 13
+\BOOKMARK [2][-]{subsection.1.5.1}{Formulation of the Boundary Value Problem}{section.1.5}% 14
+\BOOKMARK [2][-]{subsection.1.5.2}{Calculation of the Mouth Impedance}{section.1.5}% 15
+\BOOKMARK [2][-]{subsection.1.5.3}{An Example}{section.1.5}% 16
+\BOOKMARK [1][-]{section.1.6}{Inviscid, Incompressible, Potential Flow}{chapter.1}% 17
+\BOOKMARK [2][-]{subsection.1.6.1}{Bernoulli's Equation}{section.1.6}% 18
+\BOOKMARK [2][-]{subsection.1.6.2}{The Continuity Equation}{section.1.6}% 19
+\BOOKMARK [1][-]{section.1.7}{Nonlinear Energy Losses at an Orifice}{chapter.1}% 20
