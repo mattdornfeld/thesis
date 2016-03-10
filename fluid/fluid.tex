@@ -14,10 +14,15 @@
 \allowdisplaybreaks
 \captionsetup{compatibility=false}
 
+\graphicspath{{fluid_figs/}}
+
+
 \begin{document}
 
 \chapter{Fluid Mechanics and Acoustics Background}
 \section{Conservation Laws}
+It is my goal for thesis to be accessible to researchers who are not experts in fluid dynamics. In addition, I also want to emphasize the time domain model of later chapters is as much a derivation from first principles as possible. So in this chapter we will review some important concepts and results from fluid dynamics and acoustics, which we will use later on in deriving a description of the rat vocal tract. Discussions similar to these can be found in Batchelor \cite{Batchelor2000} and Howe \cite{howe2003theory}. 
+
 The state of a fluid at time t and position $\textbf{x}$ is determined by its velocity field $\textbf{v}(\textbf{x}, t)$ and any two thermodynamic variables. Common choices for these thermodynamic variables are the pressure field $p(\textbf{x}, t)$, density field $\rho(\textbf{x}, t)$, or temperature field $T(\textbf{x}, t)$. We thus need five scalar equations to specify the equations of motion for the fluid.
 
 \subsection{Mass Conservation}
@@ -44,7 +49,7 @@ Now using the divergence theorem on the second integral we can express this equa
 \begin{equation}
 \int_V \left(\frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \textbf{v} \right)\right) dV = 0.
 \end{equation}
-This equation must be true for all volumes $V$. Thus, the integrand must be equal to $0$, and we obtain the equation of fluid continuity.
+This equation must be true for all volumes $V$. Thus, the integrand must be equal to $0$, and we obtain the equation of fluid continuity \cite{Batchelor2000}.
 \begin{equation}
 \label{eq:continuity}
 \frac{\partial \rho}{\partial t} + \nabla \cdot \left( \rho \textbf{v} \right)=0.
@@ -56,12 +61,11 @@ For general fluid dynamics problems, especially ones in which there is significa
 \label{eq:constitutive}
 p = p(\rho, s).
 \end{equation}
-For an adiabatic ideal gas this equation is
+Often times simply assuming the fluid to be an ideal gas is sufficient. The constitutive equation for an adiabatic ideal gas is
 \begin{equation}
 p = constant \times \rho^\gamma,
 \end{equation}
-where $\gamma$ is the ratio of specific heats of the gas
-
+where $\gamma$ is the ratio of specific heats of the gas. For our purposes we will be able to use an even simpler relation. Since we are mainly interested in the production of sound, we will be able to use the fact that acoustic flow consists of small perturbations from a mean flow to derive a constitutive equation. This relation is discussed more in the section on acoustic flow \cite{howe2003theory}. 
 \subsection{Momentum Conservation}
 The momentum conservation equation comes from similar considerations as the previous section. We will derive an expression for the net momentum in a volume $V$ and relate its time rate of change to the net flux of momentum through the volume's enclosing surface $S$. Although this process will be made somewhat more complicated by the fact that momentum is a vector quantity. The $i^{th}$ component of the total linear momentum in volume $V$ is given by
 \begin{equation}
@@ -116,7 +120,7 @@ where
 \begin{equation}
 \frac{D}{Dt} = \frac{\partial }{\partial t} + v_j \frac{\partial }{\partial x_j}
 \end{equation}
-is known as the convective derivative. 
+is known as the convective derivative \cite{Batchelor2000}. 
 
 \section{The Stress Tensor}
 \subsection{Symmetry of the Stress Tensor}
@@ -145,7 +149,7 @@ Now we consider the case in which the point $O$ lies within $V$ and we allow the
 \begin{equation}
 \varepsilon_{ijk} \sigma_{kj} = 0,
 \end{equation}
-which implies that stress tensor must be symmetric
+which implies that stress tensor must be symmetric \cite{Batchelor2000}
 \begin{equation}
 \sigma_{ij} = \sigma_{ji}.
 \end{equation}
@@ -175,7 +179,7 @@ By construction $Tr(\boldsymbol{\sigma})=\sigma_{ii}$, which also equals the tra
 \begin{equation}
 \sigma_{ij} = -p \delta_{ij}.
 \end{equation}
-The stress tensor in a static fluid then has the interpretation of isotropically compressing all fluid volumes with force per unit area equal to the static pressure.
+The stress tensor in a static fluid then has the interpretation of isotropically compressing all fluid volumes with force per unit area equal to the static pressure \cite{Batchelor2000}.
 
 \subsection{The Stress Tensor in a Moving Fluid}
 In a moving fluid there a shear forces in addition the normal forces from the static pressure. To account for these shear forces we express the stress tensor as the sum of the static fluid part and a non-isotropic which accounts for shear forces that arise from the fluid motion.
@@ -205,7 +209,7 @@ where
 \label{eq:rate_of_strain}
 e_{ij}=\frac{1}{2}\left( \frac{\partial v_i}{\partial x_k} + \frac{\partial v_j}{\partial x_i} \right).
 \end{equation}
-The quantity $e_{ij}$ is known as the rate of strain tensor and the quantity $\mu$ has the interpretation of being the viscosity of the fluid.
+The quantity $e_{ij}$ is known as the rate of strain tensor and the quantity $\mu$ has the interpretation of being the viscosity of the fluid \cite{Batchelor2000}.
 
 \section{The Navier-Stokes and Euler Equations}
 The momentum transport equation can be used in combination with the expression for the stress tensor in terms of the velocity gradients to obtain the equation of motion for a isotropic, Newtonian, classical fluid. Combining Eqs. \ref{eq:momentum_transport}, \ref{eq:stress}, \ref{eq:deviatoric}, and \ref{eq:rate_of_strain} we get
@@ -217,9 +221,9 @@ Writing this in vector form it becomes
 \label{eq:navier} 
 \rho \frac{D \textbf{v}}{D t} = \textbf{F} - \nabla p + \mu \left( \nabla^2 \textbf{v} + \frac{1}{3} \nabla (\nabla \cdot \textbf{v})\right).
 \end{equation}
-This is the Navier-Stokes equation. Its three components, along with the continuity equation (Eq. \ref{eq:continuity}), and a constitutive equation of the form Eq. \ref{eq:constitutive} give the five equations of motion necessary to solve for the three velocity components $v_i$, the pressure $p$, and the density $\rho$ for Newtonian homentropic flow in an isotropic fluid. In general this is a very difficult task and much work is done performing direct numerical simulations of these equations. In practice it is generally not necessary to use the equations of motion in their full form, and additional simplifying assumptions can be introduced. In the following sections I will discuss the special types of flow I have used to model the acoustics of the rat vocal tract.
+This is the Navier-Stokes equation \cite{Batchelor2000}. Its three components, along with the continuity equation (Eq. \ref{eq:continuity}), and a constitutive equation of the form Eq. \ref{eq:constitutive} give the five equations of motion necessary to solve for the three velocity components $v_i$, the pressure $p$, and the density $\rho$ for Newtonian homentropic flow in an isotropic fluid. In general this is a very difficult task and much work is done performing direct numerical simulations of these equations. In practice it is generally not necessary to use the equations of motion in their full form, and additional simplifying assumptions can be introduced. In the following sections I will discuss the special types of flow I have used to model the acoustics of the rat vocal tract.
 
-The first simplifying assumption is the neglecting of viscosity. In the Navier-Stokes equation, for flows with Reynold's numbers much greater than unity, the inertial terms become much greater than viscous terms. This allows one to neglect viscosity. The rat vocal folds have a radius of approximately $r=1$ mm, and the flow them has velocities on the order $U=30 \frac{m}{s}$. Thus the Reynold's number, $Re=\frac{r U}{\nu}$, (where $\nu$ is the kinematic viscosity of air) of this flow is on the order of $2000$. Therefore we will neglect viscosity in much of the analysis of this flow. The equation of motion for inviscid flow is called the Euler equation.
+The first simplifying assumption is the neglecting of viscosity. In the Navier-Stokes equation, for flows with Reynold's numbers much greater than unity, the inertial terms become much greater than viscous terms. This allows one to neglect viscosity. The rat vocal folds have a radius of approximately $r=1$ mm, and the flow them has velocities on the order $U=30 \frac{m}{s}$. Thus the Reynold's number, $Re=\frac{r U}{\nu}$, (where $\nu$ is the kinematic viscosity of air) of this flow is on the order of $2000$. Therefore we will neglect viscosity in much of the analysis of this flow. The equation of motion for inviscid flow is called the Euler equation \cite{Batchelor2000}.
 \begin{equation}
 \label{eq:euler} 
 \rho \frac{D \textbf{v}}{D t} = \textbf{F} - \nabla p.
@@ -255,14 +259,14 @@ p_0 &= p(\rho_0, s) \\
 p_0 + p^{'} = p(\rho_0+\rho^{'},s) \approx p(p_0, s) + \left( \frac{\partial p}{\partial \rho}(\rho,s) \right)_0 \rho^{'}.
 \end{split}
 \end{equation}
-The derivative in parentheses has dimensions of velocity squared and has the interpretation of being the square speed of sound in the medium $c_0$. Inserting this interpretation into the above equations and using the first equation to eliminate $p_0$ and $p(p_0, s)$ from the second equation we get a relationship between $ p^{'}$ and $\rho^{'}$.
+The derivative in parentheses has dimensions of velocity squared and has the interpretation of being the square speed of sound in the medium $c$. Inserting this interpretation into the above equations and using the first equation to eliminate $p_0$ and $p(p_0, s)$ from the second equation we get a relationship between $ p^{'}$ and $\rho^{'}$.
 \begin{equation} 
-p^{'} = c_0^2 \rho^{'}.
+p^{'} = c^2 \rho^{'}.
 \end{equation}
 Using this equation to eliminate $\rho^{'}$ from Eq. \ref{eq:linear2} we get the acoustic wave equation for pressure perturbations driven by volume sources $q$ and body forces $\textbf{F}$.
 \begin{equation} 
 \label{eq:pressure_wave}
-\left( \frac{1}{c_0^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)p^{'}=\rho_0 \frac{\partial q}{\partial t} - \nabla \cdot \textbf{F}
+\left( \frac{1}{c^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)p^{'}=\rho_0 \frac{\partial q}{\partial t} - \nabla \cdot \textbf{F}
 \end{equation}
 
 If there are no body forces (i.e. $\textbf{F}=0$), then Eq. \ref{eq:linear1} implies the existence of a velocity potential $\phi^{'}$ such that
@@ -273,10 +277,10 @@ If there are no body forces (i.e. $\textbf{F}=0$), then Eq. \ref{eq:linear1} imp
 p^{'} &= -\rho_0 \frac{\partial \phi^{'}}{\partial t}
 \end{split}
 \end{equation}
-Acoustic flow is generally irrotational potential flow as long as there are no body forces introducing vorticity. In the upper vocal tract the only body force is gravity, which is negligible compared to other effects of the flow, so the approximation of $\textbf{F}=0$ is valid for our situation. Inserting this expression into Eq. \ref{eq:pressure_wave} we get the acoustic wave equation for the velocity potential.
+Acoustic flow is generally irrotational potential flow as long as there are no body forces introducing vorticity. In the upper vocal tract the only body force is gravity, which is negligible compared to other effects of the flow, so the approximation of $\textbf{F}=0$ is valid for our situation. Inserting this expression into Eq. \ref{eq:pressure_wave} we get the acoustic wave equation for the velocity potential \cite{howe2003theory}.
 \begin{equation}
 \label{eq:potential_wave}
-\left( \frac{1}{c_0^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)\phi^{'}= -q(\textbf{x}, t).
+\left( \frac{1}{c^2}\frac{\partial^2 }{\partial t^2} - \nabla^2 \right)\phi^{'}= -q(\textbf{x}, t).
 \end{equation}
 \section{Acoustic Boundary Conditions and an Example}
 \subsection{Formulation of the Boundary Value Problem}
@@ -294,16 +298,16 @@ transform the inhomogeneous boundary condition into a inhomogeneous driving term
 \begin{equation}
 \label{eq:one_boundary}
 \begin{split}
-\frac{\partial^2 \psi}{\partial x^2} - \frac{1}{c_0^2}\frac{\partial^2 \psi}{\partial t^2} &= \frac{x-L}{L}\frac{\dot{p}_src}{\rho c_0^2} \\
+\frac{\partial^2 \psi}{\partial x^2} - \frac{1}{c^2}\frac{\partial^2 \psi}{\partial t^2} &= \frac{x-L}{L}\frac{\dot{p}_src}{\rho c^2} \\
 \dot{\psi}(0,t) &= 0
 \end{split}
 \end{equation}
 
-The Eqs. \ref{eq:one_boundary} form an inhomogeneous initial value problem with one boundary condition determined. For the problem to be well posed we need to formulate the second boundary condition at the end of the pipe. Once we have the second boundary condition we can solve the homogeneous version of the problem in the frequency domain to get a set of spatial eigenfunctions. The solutions of the inhomogeneous problem in the time domain can then be expanded on to the spatial eigenfunctions. Using this method we can account for inhomogeneities and transients due to the pressure driving force. The boundary conditions at the end of the pipe are most easily formulated in the frequency domain so we will transform our problem to that space. A transformation to Fourier space is appropriate when studying standing wave solution and a transformation to Laplace space when studying dissipative solutions. An important part of our later analysis is acoustic radiation from the mouth of the rat. This makes the problem inherently dissipative and suggests a solution in Laplace space. This transformation can effectively be done by assuming a solution of the form $\psi(x,t)=\phi_m(x) e^{s_m t}$, where $s_m = i\omega_m - \alpha_m$. The minus sign in front of $\alpha_m$ indicates we expect the energy of our system to dissipate over time due to radiation. Note if we set $\alpha_m=0$ then the system becomes conservative and we will get standing wave solutions. Substituting this assumption into the homogeneous form of Eq. \ref{eq:one_boundary} we get Helmholtz's equation.
+The Eqs. \ref{eq:one_boundary} form an inhomogeneous initial value problem with one boundary condition determined. For the problem to be well posed we need to formulate the second boundary condition at the end of the pipe. Once we have the second boundary condition we can solve the homogeneous version of the problem in the frequency domain to get a set of spatial eigenfunctions. The solutions of the inhomogeneous problem in the time domain can then be expanded on to the spatial eigenfunctions. Using this method we can account for inhomogeneities and transients due to the pressure driving force. The boundary conditions at the end of the pipe are most easily formulated in the frequency domain so we will transform our problem to that space. A transformation to Fourier space is appropriate when studying standing wave solution and a transformation to Laplace space when studying dissipative solutions. An important part of our later analysis is acoustic radiation from the mouth of the rat. This makes the problem inherently dissipative and suggests a solution in Laplace space. This transformation can effectively be done by assuming a solution of the form $\psi(x,t)=\phi_m(x) e^{s_m t}$, where $s_m = i\omega_m - \alpha_m$. The minus sign in front of $\alpha_m$ indicates we expect the energy of our system to dissipate over time due to radiation. Note if we set $\alpha_m=0$ then the system becomes conservative and we will get standing wave solutions. Substituting this assumption into the homogeneous form of Eq. \ref{eq:one_boundary} we get Helmholtz's equation \cite{fletcher2012physics}.
 \begin{equation}
 \label{eq:helmholtz}
 \begin{split}
-\frac{\partial^2 \hat{\phi_m}}{\partial x^2} - \frac{s^2}{c_0^2} \hat{\phi_m} &= 0 \\
+\frac{\partial^2 \hat{\phi_m}}{\partial x^2} - \frac{s^2}{c^2} \hat{\phi_m} &= 0 \\
 \hat{\phi_m}(0) &= 0
 \end{split}
 \end{equation}
@@ -322,7 +326,7 @@ In our case $S$ will be the disk that forms the exit of the pipe at $x=L$. In ge
 \label{eq:boundary_two}
 s_m \rho \hat{\phi}_m(L, \omega_m) + Z(\omega_m) \frac{\partial }{\partial x}\hat{\phi}_m(L, \omega_m)= 0.
 \end{equation}
-To use this as a boundary condition we need the specific form of $Z(\omega)$. To calculate this we need to introduce extra assumptions about the flow through the pipe exit. In the next section we will discuss a well known model for the acoustic flow through the exit of a cylindrical pipe.
+To use this as a boundary condition we need the specific form of $Z(\omega)$. To calculate this we need to introduce extra assumptions about the flow through the pipe exit. In the next section we will discuss a well known model for the acoustic flow through the exit of a cylindrical pipe \cite{fletcher2012physics}.
 \subsection{Calculation of the Mouth Impedance}
 To calculate the spatial eigenmodes we first must derive an expression for the exit impedance Z. This can be done by assuming the exit of the pipe is a circular piston of radius $a$ on which each infinitesimal area acts as the infinitesimal source of a spherical wave. The pressure and velocity solutions of the free space spherical wave equation are.
 \begin{equation}
@@ -356,15 +360,66 @@ Z = \frac{p}{U_0 e^{i \omega t}} = \frac{f/ \pi a^2 }{U_0 e^{i \omega t}}.
 Substituting in our expression for $f$ we get
 \begin{equation}
 \label{eq:mouth_impedance}
-Z = \rho c \left(1 - \frac{J_1(2ka)}{ka} + i \frac{H_1(ka)}{ka} \right).
+Z(\omega) = \rho c \left(1 - \frac{J_1(2ka)}{ka} + i \frac{H_1(ka)}{ka} \right).
 \end{equation}
-Thus, we can think of the end of the pipe as an acoustic load with resistance $R = \rho c_0 \left(1 - \frac{J_1(2 k a)}{k a} \right)$ and reactance $X = \rho c \frac{H_1(k a)}{k a}$. From now on we will drop the stars in these quantities to indicate they are non dimensional. Now that we have an expression for the exit impedance the spatial boundary value problem is well determined, and we can calculate the spatial eigenmodes.
-
+Thus, we can think of the end of the pipe as an acoustic load with resistance $R = \rho c \left(1 - \frac{J_1(2 k a)}{k a} \right)$ and reactance $X = \rho c \frac{H_1(k a)}{k a}$. Fig. \ref{fig:impedance} shows a plot of the real and imaginary parts of the impedance. Now that we have an expression for the exit impedance the spatial boundary value problem is well determined, and we can calculate the spatial eigenmodes.
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{impedance.png}
+\label{fig:impedance}
+\caption{A log-log plot of the reactive and resistive parts of the mouth impedance in units such that $\rho c = 1$. At very low frequencies it can be seen that the impedance becomes primarily reactive and approaches a conservative system. At very high frequencies it becomes primarily resistive. In this regimes, its main effect will be to dissipate energy}
+\end{figure}
 \subsection{An Example}
-Now that we have an expression for the mouth impedance we can solve the boundary value problem determined by Eqs. \ref{eq:helmholtz} and \ref{eq:boundary_two}. First we must acknowledge the difficulty 
+Now that we have an expression for the mouth impedance we can solve the boundary value problem determined by Eqs. \ref{eq:helmholtz} and \ref{eq:boundary_two}. However first we should acknowledge that the real parts of $s$ and $Z$ make this boundary value problem non hermitian. The non hermitian nature of this boundary value problem reflects the presence of radiation from the mouth. This results in complex eigenvalues and non-orthogonal eigenfunctions. For a physically realistic treatment of the rat vocal tract we cannot ignore radiation from the mouth. We will deal with the difficulties of including this mechanism in a later chapter. In this section, as a simpler example, we will consider the boundary value problem in the low frequency approximation. This reduces to a hermitian problem and is an important historical result in acoustics. The low frequency approximation of $Z(\omega)$ can be derived by assuming the quantity $ka \ll 1$. In this limit we can expand Eq. \ref{eq:mouth_impedance} in powers of $ka$ and retain only linear terms. The impedance becomes
+\begin{equation}
+Z(\omega) \approx i \rho c  \frac{2 k a}{3\pi}.
+\end{equation}
+Here the resistive part of the impedance has become negligible, and the reactive part only provides a linear contribution. Substituting this into Eq. \ref{eq:boundary_two}, the boundary conditions becomes
+\begin{equation}
+\label{eq:low_frequency_impedance}
+s_m \hat{\phi}_m(L, s_m) + c \frac{2ka}{3\pi} \frac{\partial }{\partial x}\hat{\phi}_m(L, s_m)= 0.
+\end{equation}
+Now solving Eq. \ref{eq:helmholtz} and applying the boundary condition at $x=0$ the eigenfunctions of the problem (up to a constant factor) are 
+\begin{equation}
+\label{eq:resonance_modes}
+\hat{\phi}_m(x)= \sinh \left(\frac{s_m x}{c} \right)
+\end{equation}
+Plugging the expression functions into Eq. \ref{eq:low_frequency_impedance} we can get the characteristic equation, which determines the eigenvalues
+\begin{equation}
+\label{eq:characteristic1}
+\tanh \left( \frac{s_m L}{c} \right) = -i \frac{2 k_m a}{3 \pi}.
+\end{equation}
+The real part of this equation is
+\begin{equation}
+\sinh \left(\frac{2 \alpha_m L}{c} \right) = 0. 
+\end{equation}
+This equation is only satisfied for $\alpha_m=0$, which indicates energy is not dissipated from the pipe due to radiation and that the problem is hermitian. With $\alpha_m=0$ Eq. \ref{eq:characteristic1} becomes 
+\begin{equation}
+\label{eq:characteristic}
+\tan \left( k_m L \right) + \frac{2 k_m a}{3 \pi} = 0.
+\end{equation}
+This equation can be numerically solved for the eigenfrequencies. However, it is also instructive to expand the tan function out in a power series about its roots $m \pi$. Retaining only the linear term of the power series,
+\begin{equation}
+\label{eq:end_correction}
+k_m \left( L + \frac{2 a}{3 \pi} \right) = m \pi.
+\end{equation}
+This is the same characteristic equation that is obtained from using the boundary condition $\hat{\phi}_m(L + \Delta L) = 0$ with $\Delta L = \frac{2 a}{3 \pi}$. The quantity $\Delta L$ is known as the end correction. So the additional reactance at the end of the pipe makes the resonance modes behave in the same way as if we use a zero stress boundary condition for a piple of length $L + \Delta L$. The interpretation of this is that in addition to the oscillations of the air inside the resonator there is a small amount of air that lies directly beyond that mouth that also oscillates. The inertia of this air must be taken into account when computing the resonance frequencies of the system. Fig. \ref{fig:end_correction} shows a plot of the characteristic equation and eigenfrequencies obtained using the end correction approximation. Fig. \ref{fig:resonance_modes} shows a plot of the resonance modes given by Eq. \ref{eq:resonance_modes}. This is often the stopping point of classical acoustics. However, an important question for our work is how does an acoustic system switch between the different resonance modes. It is my belief that the frequency jumps of rat ultrasonic vocalizations are the result of these kinds of transition. The frequency domain analysis is insufficient to answer to this question. In a later chapter we will go about formulating this problem in the time domain.
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{resonance_freqs.png}
+\label{fig:end_correction}
+\caption{A plot of the left hand side of Eq. \ref{eq:characteristic}for $L=10$ m and $a=1$ m. The roots of this function give the eigenfrequencies and can be approximated in the low frequency limit by Eq. \ref{eq:end_correction}, which is to equivalent to finding the eigenfrequencies of the system using the boundary condition $\hat{\phi}_m(L + \Delta L) = 0$. It can be seen that the end correction approximation starts to deviate from the true roots of the systems as $ka$ gets bigger. }
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{resonance_modes.png}
+\label{fig:resonance_modes}
+\caption{A plot of the left hand side of Eq. \ref{eq:characteristic}for $L=10$ m and $a=1$ m. The roots of this function give the eigenfrequencies and can be approximated in the low frequency limit by Eq. \ref{eq:end_correction}, which is to equivalent to finding the eigenfrequencies of the system using the boundary condition $\hat{\phi}_m(L + \Delta L) = 0$. It can be seen that the end correction approximation starts to deviate from the true roots of the systems as $ka$ gets bigger. }
+\end{figure}
+
 \section{Inviscid, Incompressible, Potential Flow}
 \subsection{Bernoulli's Equation}
-For this type of flow one simplifying assumption from the previous section will be relaxed and another simplifying assumption will be introduced. The flow will no longer be assumed to be linear, which was important in deriving the acoustic wave equation. However the inviscid and irrotational assumptions will be kept. These assumptions will allow the derivation of a conservation equation known as Bernoulli's equation. In addition it will be assumed the flow is incompressible, meaning variations in density can be neglected. This will simplify the continuity equation. In a later chapter we will use this type of flow to model the movement of air through the rat vocal folds throughout a vocalization. The relaxation of the linear assumption is important as it will allow us to take into account turbulent losses due to viscosity, even though we are analyzing the motion of an inviscid fluid. The incompressible assumption will simplify the continuity equation, which will allow us to analyze the flow without resorting to direct numerical simulations. In the previous section the equation of motion for an inviscid fluid was derived.
+For this type of flow one simplifying assumption from the previous section will be relaxed and another simplifying assumption will be introduced. The flow will no longer be assumed to be linear, which was important in deriving the acoustic wave equation. However the inviscid and irrotational assumptions will be kept. These assumptions will allow the derivation of a conservation equation known as Bernoulli's equation. In addition it will be assumed the flow is incompressible, meaning variations in density can be neglected. This will simplify the continuity equation. In a later chapter we will use this type of flow to model the movement of air through the rat vocal folds throughout a vocalization. The relaxation of the linear assumption is important as it will allow us to take into account turbulent losses due to viscosity, even though we are analyzing the motion of an inviscid fluid. The incompressible assumption will simplify the continuity equation, which will allow us to analyze the flow without resorting to direct numerical simulations. In a previous section the equation of motion for an inviscid fluid was derived.
 \begin{equation}
 \rho \frac{D \textbf{v}}{D t} = -\nabla p.
 \end{equation}

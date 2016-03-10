@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.4.26)  8 MAR 2016 12:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.4.26)  10 MAR 2016 14:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -288,20 +288,20 @@ LaTeX Warning: Unused global option(s):
 (./fluid.aux)
 \openout1 = `fluid.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
@@ -334,7 +334,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 17.
+Package hyperref Info: Link coloring OFF on input line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -344,9 +344,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count120
 )
-LaTeX Info: Redefining \ref on input line 17.
-LaTeX Info: Redefining \pageref on input line 17.
-LaTeX Info: Redefining \nameref on input line 17.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
 
 (./fluid.out) (./fluid.out)
 \@outlinefile=\write3
@@ -360,55 +360,93 @@ Chapter 1.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
 
 LaTeX Warning: Reference `eq:momentum_conservation' on page 5 undefined on inpu
-t line 86.
+t line 88.
 
 [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
-Overfull \hbox (5.2858pt too wide) in paragraph at lines 281--281
+Overfull \hbox (5.2858pt too wide) in paragraph at lines 283--283
 []\OT1/cmr/bx/n/17.28 Acoustic Bound-ary Con-di-tions and an Ex-
  []
 
 [16] [17] [18] [19] [20] [21]
 
-LaTeX Warning: Reference `eq:boundary_two' on page 22 undefined on input line 3
-64.
+Package caption Warning: \label without proper \caption on input line 368.
+See the caption package documentation for explanation.
 
-[22] [23] [24] [25] [26] [27]
 
-LaTeX Warning: Citation `Ingard1967' on page 28 undefined on input line 435.
+LaTeX Warning: Reference `fig:impedance' on page 22 undefined on input line 363
+.
 
-[28]
+<fluid_figs/impedance.png, id=272, 578.16pt x 433.62pt>
+File: fluid_figs/impedance.png Graphic file (type png)
+
+<use fluid_figs/impedance.png>
+Package pdftex.def Info: fluid_figs/impedance.png used on input line 366.
+(pdftex.def)             Requested size: 390.0pt x 292.4956pt.
+ [22] [23 <./fluid_figs/impedance.png>] [24]
+[25]
+
+Package caption Warning: \label without proper \caption on input line 409.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:end_correction' on page 26 undefined on input lin
+e 404.
+
+
+Package caption Warning: \label without proper \caption on input line 415.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:resonance_modes' on page 26 undefined on input li
+ne 404.
+
+<fluid_figs/resonance_freqs.png, id=313, 578.16pt x 433.62pt>
+File: fluid_figs/resonance_freqs.png Graphic file (type png)
+
+<use fluid_figs/resonance_freqs.png>
+Package pdftex.def Info: fluid_figs/resonance_freqs.png used on input line 407.
+
+(pdftex.def)             Requested size: 390.0pt x 292.4956pt.
+
+<fluid_figs/resonance_modes.png, id=318, 578.16pt x 433.62pt>
+File: fluid_figs/resonance_modes.png Graphic file (type png)
+
+<use fluid_figs/resonance_modes.png>
+Package pdftex.def Info: fluid_figs/resonance_modes.png used on input line 413.
+
+(pdftex.def)             Requested size: 390.0pt x 292.4956pt.
+ [26] [27 <./fluid_figs/resonance_freqs.png>] [28 <./fluid_figs/resonance_modes
+.png>] [29] [30] [31] [32] [33]
+
+LaTeX Warning: Citation `Ingard1967' on page 34 undefined on input line 488.
+
+[34]
 No file fluid.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 447.
-[29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 447.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 500.
+[35]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 500.
  (./fluid.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 447.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 447.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 500.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 500.
+Package rerunfilecheck Info: File `fluid.out' has not changed.
+(rerunfilecheck)             Checksum: 7D3D6A7C97563E4A8BB22E4094528595;1565.
 
-
-Package rerunfilecheck Warning: File `fluid.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `fluid.out':
-(rerunfilecheck)             Before: 594971AED29E66284637999BD46B909B;1501
-(rerunfilecheck)             After:  7D3D6A7C97563E4A8BB22E4094528595;1565.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 447.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 500.
  ) 
 Here is how much of TeX's memory you used:
- 8470 strings out of 494978
- 138340 string characters out of 6180203
+ 8522 strings out of 494978
+ 139416 string characters out of 6180203
  240819 words of memory out of 5000000
- 11502 multiletter control sequences out of 15000+600000
+ 11533 multiletter control sequences out of 15000+600000
  11636 words of font info for 41 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 36i,18n,38p,1603b,339s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,18n,38p,1603b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
@@ -421,10 +459,10 @@ type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1
 s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on fluid.pdf (29 pages, 201756 bytes).
+Output written on fluid.pdf (35 pages, 332298 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 351 compressed objects within 4 object streams
- 127 named destinations out of 1000 (max. 500000)
- 153 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 464 PDF objects out of 1000 (max. 8388607)
+ 400 compressed objects within 4 object streams
+ 143 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 
